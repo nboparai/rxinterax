@@ -8,11 +8,18 @@ module.exports = (app) => {
    app.post('/api/account/signup', (req, res, next) => {
       // Store request object
       const { body } = req;
-      // Get email & password from request body
+      // Get username, email, & password from request body
       const { password } = body;
       let { email } = body;
+      let { username } = body;
 
-      // Validation: ensure both email & password are proper values
+      // Validation: ensure username, email, & password are proper values
+      if (!username) {
+         return res.send({
+            success: false,
+            message: 'Error: Username cannot be blank.'
+         });
+      }
       if (!email) {
          return res.send({
             success: false,
@@ -48,6 +55,7 @@ module.exports = (app) => {
          // Create new user object & save
          const newUser = new User();
 
+         newUser.username = username;
          newUser.email = email;
          newUser.password = newUser.generateHash(password);
          newUser.save((err, user) => {
