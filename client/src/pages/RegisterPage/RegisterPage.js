@@ -54,7 +54,7 @@ class RegisterPage extends Component {
 
    componentDidMount() {
       // ???? getFromStorage => UTILS?
-      const obj = getFromStorage('the_main_app');
+      const obj = getFromStorage('rxinterax');
       if (obj && obj.token) {
         const { token } = obj;
         // Verify token
