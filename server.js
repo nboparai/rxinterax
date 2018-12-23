@@ -34,7 +34,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax", { useNewUrlParser: true });
 
 // Start API server
 app.listen(PORT, () => {

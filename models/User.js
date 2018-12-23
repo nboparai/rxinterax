@@ -11,11 +11,11 @@ const UserSchema = new Schema({
   username: { type: String, required: true, index: { unique: true } },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  email: { type: String, required: true },
   // isDeleted: { type: Boolean, default: false },
   date: { type: Date, default: Date.now() }
 });  
 
+// https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1
 // ========================================================================================
 // Mongoose middleware to automatically hash the password before it's saved to the database
 // ========================================================================================
