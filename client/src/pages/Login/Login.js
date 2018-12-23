@@ -1,131 +1,148 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../../utils/API";
-import { InputGroup, InputGroupAddon, Input, Button, Alert, FormText, FormFeedback} from "reactstrap";
+import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
+// https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
 
 class Login extends Component {
-  state = {
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    password: "",
-    errorMessage: "",
-    showError: false
-  }
-
-  componentDidMount() {
+  constructor() {
+    super()
+    this.state = {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      password: "",
+      isSubmitDisabled: true
+    };
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
+      [event.target.name]: event.target.value
+    }, function(){ this.canSubmit()})
+  }
+
+  canSubmit() {
+    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    const { firstname, lastname, username, email, password } = this.state
+    // TODO: add valid email format validation in this condition
+    if (firstname.length > 0 && lastname.length > 0 && username.length > 0 && email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
+      this.setState({
+        isSubmitDisabled: false
+      })
+    }
+    else {
+      this.setState({
+        isSubmitDisabled: true
+      })
+    }
   }
 
   handleOnSubmit = event => {
     event.preventDefault();
-    let userObj = {firstname: this.state.firstname, lastname: this.state.lastname, username: this.state.username, email: this.state.email, password: this.state.password};
-    API.login(userObj).then((res)=>{
-      if(res.data.length > 0){
-        this.props.history.push("/home");
-      }else{
-        this.setState({errorMessage:"All fields required", showError:true})
-      }
-    })
+    const { firstname, lastname, username, email, password } = this.state
+    
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // NEED API HERE WITH LOGIN METHOD      {{ prior example below }}
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // onSubmit = () =>{
+    // let userObj = {username: this.state.username, password: this.state.password};
+    // API.login(userObj).then((res)=>{
+    //   if(res.data.length > 0){
+    //     this.props.history.push("/books");
+    //   }else{
+    //     this.setState({errorMessage:"No User Found", showError:true});
+    //   }
+    // })
+    // }
+
+    alert(`Your registration detail: \n 
+    First Name: ${firstname} \n 
+    Last Name: ${lastname} \n 
+    Username: ${username} \n
+    Email: ${email} \n 
+    Password: ${password}`)
   }
-
-  validateEmail = event => {
-    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const { validate } = this.state
-      if (emailRex.test(event.target.value)) {
-        validate.emailState = 'has-success'
-      } else {
-        validate.emailState = 'has-danger'
-      }
-      this.setState({ validate })
-  };
-
 
   render() {
     return (
       <div className="signupForm"> 
-        <h2>Sign Up</h2>
-        <br />
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">First Name</InputGroupAddon>
+        <h1>Sign Up</h1>
+        <p>Please fill in all empty fields below</p> 
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup>
+            <Label htmlFor="firstname">First Name</Label>
             <Input
-              type="text"
+              className="form-control"
+              id="firstname"
               name="firstname"
-              id="exampleFirstName"
-              placeholder="Joe"
+              type="text"
+              placeholder="Enter first name"
               value={this.state.firstname}
               onChange={this.handleInputChange}
             />
-          </InputGroup>
-          <br />
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Last Name</InputGroupAddon>
+          </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="lastname">Last Name</Label>
             <Input
-              type="text"
+              className="form-control"
+              id="lastname"
               name="lastname"
-              id="exampleLastName"
-              placeholder="Blow"
+              type="text"
+              placeholder="Enter last name"
               value={this.state.lastname}
               onChange={this.handleInputChange}
             />
-          </InputGroup>
-          <br />
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+          </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="username">Username</Label>
             <Input
-              type="text"
+              className="form-control"
+              id="username"
               name="username"
-              id="exampleUsername"
-              placeholder="username"
+              type="text"
+              placeholder="Enter username"
               value={this.state.username}
               onChange={this.handleInputChange}
             />
-          </InputGroup>
-          <br />
-          <InputGroup>
+          </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="email">Email</Label>
             <Input
-              type="email"
+              className="form-control"
+              id="email"
               name="email"
-              id="exampleEmail"
-              placeholder="email"
+              type="email"
+              placeholder="Enter email"
               value={this.state.email}
               onChange={this.handleInputChange}
             />
-            <InputGroupAddon addonType="append">@example.com</InputGroupAddon>
-          </InputGroup>
-          <FormFeedback valid={ this.state.validate.emailState === 'has-success' }>
-              That's a tasty looking email you've got there.
-          </FormFeedback>
-          <FormFeedback invalid={ this.state.validate.emailState === 'has-danger' }>
-              Uh oh! Looks like there is an issue with your email. Please input a correct email.
-          </FormFeedback>
-          <br />
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Password</InputGroupAddon>
+          </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="password">Password</Label>
             <Input
-              type="password"
+              className="form-control"
+              id="password"
               name="password"
-              id="examplePassword"
-              placeholder="********"
+              type="password"
+              placeholder="Enter password"
               value={this.state.password}
               onChange={this.handleInputChange}
             />
-          </InputGroup>
-          <br />
-          <Button color="primary" onClick={this.handleOnSubmit}>Sign Up</Button>
-          <br />
-          {this.state.showError?<Alert color="danger">{this.state.errorMessage}</Alert>:null}
+          </FormGroup>
+          <Button className="btn btn-success btn-block" disabled={this.state.isSubmitDisabled}>Sign up</Button>
 
-    </div>
+        </Form>
+      </div>
     )
   }
 }
