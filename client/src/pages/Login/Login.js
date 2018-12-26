@@ -71,77 +71,77 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="signupForm"> 
-        <h1>Sign Up</h1>
-        <p>Please fill in all empty fields below</p> 
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label htmlFor="firstname">First Name</Label>
-            <Input
-              className="form-control"
-              id="firstname"
-              name="firstname"
-              type="text"
-              placeholder="Enter first name"
-              value={this.state.firstname}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+      <div>
+        <div className="signup-form"> 
+          <h1>Register</h1>
+          <p>Create your account. It's free and only takes a minute.</p> 
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label htmlFor="firstname">First Name</Label>
+              <Input
+                className="form-control"
+                id="firstname"
+                name="firstname"
+                type="text"
+                value={this.state.firstname}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="lastname">Last Name</Label>
-            <Input
-              className="form-control"
-              id="lastname"
-              name="lastname"
-              type="text"
-              placeholder="Enter last name"
-              value={this.state.lastname}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="lastname">Last Name</Label>
+              <Input
+                className="form-control"
+                id="lastname"
+                name="lastname"
+                type="text"
+                value={this.state.lastname}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="username">Username</Label>
-            <Input
-              className="form-control"
-              id="username"
-              name="username"
-              type="text"
-              placeholder="Enter username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="username">Username</Label>
+              <Input
+                className="form-control"
+                id="username"
+                name="username"
+                type="text"
+                value={this.state.username}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              className="form-control"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                className="form-control"
+                id="email"
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="password">Password</Label>
-            <Input
-              className="form-control"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-          <Button className="btn btn-success btn-block" disabled={this.state.isSubmitDisabled}>Sign up</Button>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                className="form-control"
+                id="password"
+                name="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
+            <Button className="btn btn-info btn-block" disabled={this.state.isSubmitDisabled}>Sign up</Button>
 
-        </Form>
+          </Form>
+        </div>
+        <div className="text-center">Already have an account? 
+            <a href="#"> Login here</a>
+        </div>
       </div>
     )
   }
