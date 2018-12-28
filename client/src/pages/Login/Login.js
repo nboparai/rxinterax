@@ -15,16 +15,23 @@ class Login extends Component {
       username: "",
       email: "",
       password: "",
-      isSubmitDisabled: true
+      isSubmitDisabled:true,
     };
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange = event => {
+  handleInputChange(event) {
     this.setState({
+      // use dynamic name value to set our state object property
       [event.target.name]: event.target.value
     }, function(){ this.canSubmit()})
   }
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   }, function(){ this.canSubmit()})
+  // }
 
   canSubmit() {
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
@@ -32,42 +39,50 @@ class Login extends Component {
     // TODO: add valid email format validation in this condition
     if (firstname.length > 0 && lastname.length > 0 && username.length > 0 && email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
       this.setState({
-        isSubmitDisabled: false
+        isSubmitDisabled:false
       })
     }
     else {
       this.setState({
-        isSubmitDisabled: true
+        isSubmitDisabled:true
       })
     }
   }
 
-  handleOnSubmit = event => {
+  // Triggered on submit
+  handleSubmit = (event) => {
     event.preventDefault();
+    // Get const values by destructuring state
     const { firstname, lastname, username, email, password } = this.state
-    
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // NEED API HERE WITH LOGIN METHOD      {{ prior example below }}
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    console.log(`User registration details: \n
+        ${firstname} + Last Name: ${lastname} \n
+        Username: ${username} \n
+        Email: ${email} \n)`);
 
-    // onSubmit = () =>{
-    // let userObj = {username: this.state.username, password: this.state.password};
-    // API.login(userObj).then((res)=>{
-    //   if(res.data.length > 0){
-    //     this.props.history.push("/books");
-    //   }else{
-    //     this.setState({errorMessage:"No User Found", showError:true});
-    //   }
-    // })
-    // }
-
-    alert(`Your registration detail: \n 
-    First Name: ${firstname} \n 
-    Last Name: ${lastname} \n 
-    Username: ${username} \n
-    Email: ${email} \n 
-    Password: ${password}`)
+    API.saveUser({
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      email: email,
+      password: password
+    })
+    // .then((res)=>{ })
+    .catch(err => console.log(err));
   }
+
+
+    // API.login(userObj).then((res)=>{
+    //     console.log(res.data);
+    //     if(res.data.length > 0){
+    //       this.setState({errorMessage:"User data found!", showError:true});
+    //       // this.props.history.push("/books");
+    //     }else{
+    //       this.setState({errorMessage:"No User Found", showError:true});
+    //     }      
+    //   })
+    //     // .then(res => this.loadBooks())
+    //     .catch(err => console.log(err));
+    // }
 
   render() {
     return (
@@ -140,7 +155,7 @@ class Login extends Component {
           </Form>
         </div>
         <div className="text-center">Already have an account? 
-            <a href="#"> Login here</a>
+            <a href=""> Login here</a>
         </div>
       </div>
     )
