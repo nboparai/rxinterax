@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../../utils/API";
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
-import "./Login.css";
+import "./Register.css";
 
 // https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super()
     this.state = {
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
       isSubmitDisabled:true,
@@ -19,16 +21,16 @@ class Login extends Component {
 
   handleInputChange(event) {
     this.setState({
-      // use dynamic name value to set our state object property
+      // Use dynamic name value to set our state object property
       [event.target.name]: event.target.value
     }, function(){ this.canSubmit()})
   }
 
   canSubmit() {
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-    const { email, password } = this.state
+    const { firstname, lastname, email, password } = this.state
     // TODO: add valid email format validation in this condition
-    if (email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
+    if (firstname.length > 0 && lastname.length > 0 && email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
       this.setState({
         isSubmitDisabled:false
       })
@@ -44,9 +46,14 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // Get const values by destructuring state
-    const { email, password } = this.state
+    const { firstname, lastname, email, password } = this.state
+    console.log(`User registration details: \n
+        Name: ${firstname} ${lastname} \n
+        Email: ${email} \n`);
 
-    API.getUser({
+    API.saveUser({
+      firstname: firstname,
+      lastname: lastname,
       email: email,
       password: password
     })
@@ -54,19 +61,43 @@ class Login extends Component {
       if(res.data.length > 0){
         this.props.history.push("/home");
       }else{
-        console.log("No user found");
+        console.log("Registration Error");
       }
     })
     .catch(err => console.log(err));
   }
 
-
   render() {
     return (
       <div>
-        <div className="login-form"> 
-          <h1>Login</h1>
+        <div className="signup-form"> 
+          <h1>Register</h1>
+          <p>Create your account. It's free and only takes a minute.</p> 
           <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label htmlFor="firstname">First Name</Label>
+              <Input
+                className="form-control"
+                id="firstname"
+                name="firstname"
+                type="text"
+                value={this.state.firstname}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="lastname">Last Name</Label>
+              <Input
+                className="form-control"
+                id="lastname"
+                name="lastname"
+                type="text"
+                value={this.state.lastname}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
+
             <FormGroup>
               <Label htmlFor="email">Email</Label>
               <Input
@@ -90,16 +121,16 @@ class Login extends Component {
                 onChange={this.handleInputChange}
               />
             </FormGroup>
-            <Button className="btn btn-info btn-block" disabled={this.state.isSubmitDisabled}>Login</Button>
+            <Button className="btn btn-info btn-block" disabled={this.state.isSubmitDisabled}>Sign up</Button>
 
           </Form>
         </div>
-        <div className="text-center">Don't have an account? 
-            <a href="/"> Register here</a>
+        <div className="text-center">Already have an account? 
+            <a href="/login"> Login here</a>
         </div>
       </div>
     )
   }
 }
 
-export default withRouter(Login);
+export default withRouter(Register);

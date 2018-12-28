@@ -8,7 +8,6 @@ const mongoose = require("mongoose"),
 const UserSchema = new Schema({
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
-  username: { type: String, required: true, index: { unique: true } },
   email: { type: String, required: true },
   password: { type: String, required: true },
   // isDeleted: { type: Boolean, default: false },

@@ -10,11 +10,11 @@ module.exports = {
     .catch(err => res.status(422).json(err));
 
   },
-  findAll: function(req, res) {
+
+  findById: function(req, res) {
     console.log(req.body);
       db.User
-      .find(req.body)
-      .sort({ date: -1 })
+      .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
