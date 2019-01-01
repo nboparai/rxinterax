@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import API from "../../utils/API";
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
@@ -12,94 +12,94 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      isSubmitDisabled:true,
+      redirectTo: null
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)  
   }
 
-  handleInputChange(event) {
+  handleChange(event) {
     this.setState({
-      // use dynamic name value to set our state object property
+      // Use dynamic name value to set our state object property
       [event.target.name]: event.target.value
-    }, function(){ this.canSubmit()})
-  }
-
-  canSubmit() {
-    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-    const { email, password } = this.state
-    // TODO: add valid email format validation in this condition
-    if (email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
-      this.setState({
-        isSubmitDisabled:false
-      })
-    }
-    else {
-      this.setState({
-        isSubmitDisabled:true
-      })
-    }
-  }
-
-  // Triggered on submit
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // Get const values by destructuring state
-    const { email, password } = this.state
-
-    API.getUser({
-      email: email,
-      password: password
     })
-    .then((res)=>{ 
-      if(res.data.length > 0){
-        this.props.history.push("/home");
-      }else{
-        console.log("No user found");
-      }
-    })
-    .catch(err => console.log(err));
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log('handleSubmit')
+
+    axios
+        .post('/user/login', {
+            email: this.state.email,
+            password: this.state.password
+        })
+        .then(response => {
+            console.log('login response: ')
+            console.log(response)
+            if (response.status === 200) {
+                // update App.js state
+                this.props.updateUser({
+                    loggedIn: true,
+                    email: response.data.email
+                })
+                // update the state to redirect to home
+                this.setState({
+                    redirectTo: '/'
+                })
+            }
+        }).catch(error => {
+            console.log('login error: ')
+            console.log(error);
+            
+        })
+  }
 
   render() {
-    return (
-      <div>
-        <div className="login-form"> 
-          <h1>Login</h1>
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                className="form-control"
-                id="email"
-                name="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.handleInputChange}
-              />
-            </FormGroup>
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+      return (
+        <div>
+          <div className="login-form"> 
+            <h1>Login</h1>
+            <Form>
+              <FormGroup>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                className="form-control"
-                id="password"
-                name="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-              />
-            </FormGroup>
-            <Button className="btn btn-info btn-block" disabled={this.state.isSubmitDisabled}>Login</Button>
-
-          </Form>
+              <FormGroup>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <Button 
+                  className="btn btn-info btn-block" 
+                  onClick={this.handleSubmit}
+                  type="submit"
+              >Login</Button>
+            </Form>
+          </div>
+          <div className="text-center">Don't have an account? 
+              <a href="/signup"> Register here</a>
+          </div>
         </div>
-        <div className="text-center">Don't have an account? 
-            <a href="/"> Register here</a>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 }
-
-export default withRouter(Login);
+export default Login
