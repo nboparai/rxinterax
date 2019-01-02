@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import API from "../../utils/API";
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
@@ -10,141 +10,96 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      firstname: "",
-      lastname: "",
-      username: "",
       email: "",
       password: "",
-      isSubmitDisabled: true
+      redirectTo: null
     };
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)  
   }
 
-  handleInputChange = event => {
+  handleChange(event) {
     this.setState({
+      // Use dynamic name value to set our state object property
       [event.target.name]: event.target.value
-    }, function(){ this.canSubmit()})
+    })
   }
 
-  canSubmit() {
-    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-    const { firstname, lastname, username, email, password } = this.state
-    // TODO: add valid email format validation in this condition
-    if (firstname.length > 0 && lastname.length > 0 && username.length > 0 && email.length > 0 && password.length >= 5 && emailTest.test(email.toLowerCase())) {
-      this.setState({
-        isSubmitDisabled: false
-      })
-    }
-    else {
-      this.setState({
-        isSubmitDisabled: true
-      })
-    }
-  }
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log('handleSubmit')
 
-  handleOnSubmit = event => {
-    event.preventDefault();
-    const { firstname, lastname, username, email, password } = this.state
-    
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // NEED API HERE WITH LOGIN METHOD      {{ prior example below }}
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // onSubmit = () =>{
-    // let userObj = {username: this.state.username, password: this.state.password};
-    // API.login(userObj).then((res)=>{
-    //   if(res.data.length > 0){
-    //     this.props.history.push("/books");
-    //   }else{
-    //     this.setState({errorMessage:"No User Found", showError:true});
-    //   }
-    // })
-    // }
-
-    alert(`Your registration detail: \n 
-    First Name: ${firstname} \n 
-    Last Name: ${lastname} \n 
-    Username: ${username} \n
-    Email: ${email} \n 
-    Password: ${password}`)
+    axios
+        .post('/user/login', {
+            email: this.state.email,
+            password: this.state.password
+        })
+        .then(response => {
+            console.log('login response: ')
+            console.log(response)
+            if (response.status === 200) {
+                // update App.js state
+                this.props.updateUser({
+                    loggedIn: true,
+                    email: response.data.email
+                })
+                // update the state to redirect to home
+                this.setState({
+                    redirectTo: '/'
+                })
+            }
+        }).catch(error => {
+            console.log('login error: ')
+            console.log(error);
+            
+        })
   }
 
   render() {
-    return (
-      <div className="signupForm"> 
-        <h1>Sign Up</h1>
-        <p>Please fill in all empty fields below</p> 
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label htmlFor="firstname">First Name</Label>
-            <Input
-              className="form-control"
-              id="firstname"
-              name="firstname"
-              type="text"
-              placeholder="Enter first name"
-              value={this.state.firstname}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+      return (
+        <div>
+          <div className="login-form"> 
+            <h1>Login</h1>
+            <Form>
+              <FormGroup>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="lastname">Last Name</Label>
-            <Input
-              className="form-control"
-              id="lastname"
-              name="lastname"
-              type="text"
-              placeholder="Enter last name"
-              value={this.state.lastname}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <Label htmlFor="username">Username</Label>
-            <Input
-              className="form-control"
-              id="username"
-              name="username"
-              type="text"
-              placeholder="Enter username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              className="form-control"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <Label htmlFor="password">Password</Label>
-            <Input
-              className="form-control"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-          <Button className="btn btn-success btn-block" disabled={this.state.isSubmitDisabled}>Sign up</Button>
-
-        </Form>
-      </div>
-    )
+              <FormGroup>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <Button 
+                  className="btn btn-info btn-block" 
+                  onClick={this.handleSubmit}
+                  type="submit"
+              >Login</Button>
+            </Form>
+          </div>
+          <div className="text-center">Don't have an account? 
+              <a href="/signup"> Register here</a>
+          </div>
+        </div>
+      )
+    }
   }
 }
-
-export default withRouter(Login);
+export default Login

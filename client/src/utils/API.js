@@ -1,7 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 
-export default {
-  login: function(loginQuery){
-    return axios.post("/api/users", loginQuery);
-  }
-};
+// export default {
+//   saveUser: function(newUserData){
+//     return axios.post("/api/users", newUserData)
+//   },
+//   getUser: function(id){
+//     return axios.get("/api/users/" + id)
+//   }
+// };
