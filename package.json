@@ -45,5 +45,8 @@
     "reactstrap": "^6.5.0",
     "webpack": "^4.28.1"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
 } 

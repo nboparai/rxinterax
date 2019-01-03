@@ -52,7 +52,6 @@ class Register extends Component {
 			}).catch(error => {
 				console.log('signup error: ')
 				console.log(error)
-
 			})
   }
 

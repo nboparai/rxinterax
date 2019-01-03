@@ -1,25 +1,21 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
-
-// import API from "../../utils/API";
-// import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Alert } from "reactstrap";
-
+import React, { Component } from 'react'
 
 class Home extends Component {
+    constructor() {
+        super()
+    }
 
-   render() {
-      return (
-        <Container fluid>
-          <Jumbotron>
-              <h1>
-                Welcome
-              </h1>
-            </Jumbotron>
-        </Container>
-      ) 
-   }
+  render() {
+    const imageStyle = {
+          width: 400
+    }
+    return (
+      <div>
+        <p>It's good to be home</p>
+        <img style={imageStyle} src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg" />
+      </div>
+    )
+  }
 }
 
-export default withRouter(Home);
+export default Home
