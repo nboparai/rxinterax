@@ -14,7 +14,7 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      email: null
+      username: null
     }
 
     this.getUser = this.getUser.bind(this)
@@ -39,13 +39,13 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          email: res.data.user.email
+          username: res.data.user.username
         })
       } else {
         console.log('Get User: no user found');
         this.setState({
           loggedIn: false,
-          email: null
+          username: null
         })
       }
     })
@@ -58,7 +58,7 @@ class App extends Component {
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
-          <p>Join the party, {this.state.email}!</p>
+          <p>Join the party, {this.state.username}!</p>
         }
 
         {/* Routes to different pages/components */}

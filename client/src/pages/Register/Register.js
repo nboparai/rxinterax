@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import {withRouter} from 'react-router-dom';
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Register.css";
 
-// https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
 // https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
 class Register extends Component {
   constructor() {
     super()
     this.state = {
-      firstname: "",
-      lastname: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -29,14 +26,13 @@ class Register extends Component {
   }
 
   handleSubmit(event) {
-    console.log('sign-up handleSubmit, user email: ')
-		console.log(this.state.email)
+    console.log('sign-up handleSubmit, username: ')
+		console.log(this.state.username)
 		event.preventDefault()
 
 		// Request to server to add a new user data
 		axios.post('/user/', {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
+      username: this.state.username,
 			email: this.state.email,
 			password: this.state.password
 		})
@@ -44,10 +40,13 @@ class Register extends Component {
 				console.log(res)
 				if (!res.data.errmsg) {
 					console.log('successful signup')
-          // If user successfully added to database, send to login
-          this.props.history.push("/login");
+          // If user successfully added to database, redirect to login page
+          // this.props.history.push("/login");
+          this.setState({
+            redirectTo: '/login'
+          })
 				} else {
-					console.log('email already exists in database')
+					console.log('username already exists')
 				}
 			}).catch(error => {
 				console.log('signup error: ')
@@ -63,24 +62,13 @@ class Register extends Component {
           <p>Create your account. It's free and only takes a minute.</p> 
           <Form>
             <FormGroup>
-              <Label htmlFor="firstname">First Name</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
                 className="form-control"
-                id="firstname"
-                name="firstname"
+                id="username"
+                name="username"
                 type="text"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="lastname">Last Name</Label>
-              <Input
-                className="form-control"
-                id="lastname"
-                name="lastname"
-                type="text"
-                value={this.state.lastname}
+                value={this.state.username}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -120,4 +108,4 @@ class Register extends Component {
     )
   }
 }
-export default withRouter(Register)
+export default Register

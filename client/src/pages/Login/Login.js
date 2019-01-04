@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
@@ -11,7 +10,7 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      email: "",
+      username: "",
       password: "",
       redirectTo: null
     };
@@ -28,10 +27,10 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('login handleSubmit, user email: ')
+    console.log('Login-page handleSubmit')
 
     axios.post('/user/login', {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     })
       .then(res => {
@@ -41,7 +40,7 @@ class Login extends Component {
           // update App.js state
           this.props.updateUser({
             loggedIn: true,
-            email: res.data.email
+            username: res.data.username
           })
           // update the state to redirect to home
           this.setState({
@@ -64,13 +63,13 @@ class Login extends Component {
             <h1>Login</h1>
             <Form>
               <FormGroup>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="username">Username</Label>
                 <Input
                   className="form-control"
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
+                  id="username"
+                  name="username"
+                  type="text"
+                  value={this.state.username}
                   onChange={this.handleChange}
                 />
               </FormGroup>
