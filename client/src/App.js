@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 // Components
 import Register from './pages/Register'
 import Login from "./pages/Login";
@@ -26,20 +26,20 @@ class App extends Component {
     this.getUser()
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject)
   }
 
   getUser() {
-    axios.get('/user/').then(response => {
+    axios.get('/user/').then(res => {
       console.log('Get user response: ')
-      console.log(response.data)
-      if (response.data.user) {
+      console.log(res.data)
+      if (res.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
-          email: response.data.user.email
+          email: res.data.user.email
         })
       } else {
         console.log('Get User: no user found');

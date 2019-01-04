@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from 'axios'
-// import API from "../../utils/API";
+import {withRouter} from 'react-router-dom';
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Register.css";
 
 // https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
+// https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
 class Register extends Component {
   constructor() {
@@ -32,20 +33,19 @@ class Register extends Component {
 		console.log(this.state.email)
 		event.preventDefault()
 
-		// Request to server to add a new email/password
+		// Request to server to add a new user data
 		axios.post('/user/', {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
 			email: this.state.email,
 			password: this.state.password
 		})
-			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
+			.then(res => {
+				console.log(res)
+				if (!res.data.errmsg) {
 					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
+          // If user successfully added to database, send to login
+          this.props.history.push("/login");
 				} else {
 					console.log('email already exists in database')
 				}
@@ -120,4 +120,4 @@ class Register extends Component {
     )
   }
 }
-export default Register
+export default withRouter(Register)

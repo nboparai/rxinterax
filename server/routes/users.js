@@ -37,7 +37,10 @@ router.post(
     function (req, res, next) {
         console.log('routes/user.js, login, req.body: ');
         console.log(req.body)
+        // console.log(req.user)
         next()
+    // =========================================
+    // NOT REACHING AUTHENTICATION
     },
     passport.authenticate('local'),
     (req, res) => {

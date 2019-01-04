@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
@@ -27,24 +28,24 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('handleSubmit')
+    console.log('login handleSubmit, user email: ')
 
     axios.post('/user/login', {
       email: this.state.email,
       password: this.state.password
     })
-      .then(response => {
+      .then(res => {
         console.log('login response: ')
-        console.log(response)
-        if (response.status === 200) {
+        console.log(res)
+        if (res.status === 200) {
           // update App.js state
           this.props.updateUser({
             loggedIn: true,
-            email: response.data.email
+            email: res.data.email
           })
           // update the state to redirect to home
           this.setState({
-            redirectTo: '/'
+            redirectTo: "/"
           })
         }
       }).catch(error => {
