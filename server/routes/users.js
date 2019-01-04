@@ -6,7 +6,7 @@ const passport = require('../passport')
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { email, password } = req.body
+    const { firstname, lastname, email, password } = req.body
     // ADD VALIDATION
     User.findOne({ email: email }, (err, user) => {
       if (err) {
@@ -15,9 +15,12 @@ router.post('/', (req, res) => {
         res.json({
             error: `Sorry, already a user with the email: ${email}`
         })
+        console.log(`Sorry, already a user with the email: ${email}`)
       }
       else {
         const newUser = new User({
+            firstname: firstname,
+            lastname: lastname,
             email: email,
             password: password
         })
@@ -34,7 +37,10 @@ router.post(
     function (req, res, next) {
         console.log('routes/user.js, login, req.body: ');
         console.log(req.body)
+        // console.log(req.user)
         next()
+    // =========================================
+    // NOT REACHING AUTHENTICATION
     },
     passport.authenticate('local'),
     (req, res) => {
@@ -56,13 +62,13 @@ router.get('/', (req, res, next) => {
     }
 })
 
-// router.post('/logout', (req, res) => {
-//     if (req.user) {
-//         req.logout()
-//         res.send({ msg: 'logging out' })
-//     } else {
-//         res.send({ msg: 'no user to log out' })
-//     }
-// })
+router.post('/logout', (req, res) => {
+    if (req.user) {
+        req.logout()
+        res.send({ msg: 'logging out' })
+    } else {
+        res.send({ msg: 'no user to log out' })
+    }
+})
 
 module.exports = router;
