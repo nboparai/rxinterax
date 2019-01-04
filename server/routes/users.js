@@ -6,21 +6,19 @@ const passport = require('../passport')
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { firstname, lastname, email, password } = req.body
+    const { username, email, password } = req.body
     // ADD VALIDATION
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ username: username }, (err, user) => {
       if (err) {
         console.log('User.js post error: ', err)
       } else if (user) {
         res.json({
-            error: `Sorry, already a user with the email: ${email}`
+            error: `Sorry, already a user with the username: ${username}`
         })
-        console.log(`Sorry, already a user with the email: ${email}`)
       }
       else {
         const newUser = new User({
-            firstname: firstname,
-            lastname: lastname,
+            username: username,
             email: email,
             password: password
         })
@@ -32,25 +30,38 @@ router.post('/', (req, res) => {
     })
 })
 
+// router.post(
+//     '/login',
+//     function (req, res, next) {
+//         console.log('routes/user.js, login, req.body: ');
+//         console.log(req.body)
+//         // console.log(req.user)
+//         res.json(passport);
+//         passport.authenticate('local', (err, user, info)=>{
+//             console.log(user);
+//             res.send(user);
+//         })
+//     }
+// )
+
 router.post(
     '/login',
     function (req, res, next) {
         console.log('routes/user.js, login, req.body: ');
         console.log(req.body)
-        // console.log(req.user)
         next()
-    // =========================================
-    // NOT REACHING AUTHENTICATION
     },
     passport.authenticate('local'),
     (req, res) => {
         console.log('logged in', req.user);
         var userInfo = {
-          email: req.user.email
+            username: req.user.username
         };
         res.send(userInfo);
     }
 )
+
+
 
 router.get('/', (req, res, next) => {
     console.log('===== user!!======')
@@ -71,4 +82,4 @@ router.post('/logout', (req, res) => {
     }
 })
 
-module.exports = router;
+module.exports = router
