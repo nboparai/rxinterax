@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
-import { Input, Label, Button, Form, FormGroup } from "reactstrap";
-import "./Register.css";
+import { Input, Label, Button, Form, FormGroup } from "reactstrap"
+import "./Register.css"
 
 // https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
@@ -12,7 +13,7 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this);
@@ -41,10 +42,7 @@ class Register extends Component {
 				if (!res.data.errmsg) {
 					console.log('successful signup')
           // If user successfully added to database, redirect to login page
-          // this.props.history.push("/login");
-          this.setState({
-            redirectTo: '/login'
-          })
+          this.props.history.push("/login");
 				} else {
 					console.log('username already exists')
 				}
@@ -108,4 +106,4 @@ class Register extends Component {
     )
   }
 }
-export default Register
+export default withRouter(Register)
