@@ -33,5 +33,46 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  authorize: function(req, res) {
+      console.log('logged in', req.user);
+      var userInfo = {
+          username: req.user.username
+      };
+      res.send(userInfo);
+  },
+  register: function(req, res) { 
+    console.log('user signup');
+
+    const { username, email, password } = req.body
+    // ADD VALIDATION
+    db.User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        console.log('User.js post error: ', err)
+      } else if (user) {
+        res.json({
+            error: `Sorry, already a user with the username: ${username}`
+        })
+      }
+      else {
+        const newUser = new db.User({
+            username: username,
+            email: email,
+            password: password
+        })
+        newUser.save((err, savedUser) => {
+            if (err) return res.json(err)
+            res.json(savedUser)
+        })
+      }
+    })
+  },
+  logout: function(req, res) {
+    if (req.user) {
+      req.logout()
+      res.send({ msg: 'logging out' })
+    } else {
+      res.send({ msg: 'no user to log out' })
+    }
   }
 };

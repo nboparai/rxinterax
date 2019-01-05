@@ -1,8 +1,8 @@
-import React, { Component } from "react":
+import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
 import API from "../../utils/API";
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
-import "./Register.css":
+import "./Register.css";
 
 // https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
@@ -26,39 +26,26 @@ class Register extends Component {
     })
   }
 
-  handleSubmit(event) {
-    console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
-		event.preventDefault()
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('sign-up handleSubmit, username: ');
+    console.log(this.state.username);
 
-    API.saveUser(userObj).then((res)=>{
-      
+    let userObj = {username: this.state.username, email: this.state.email, password: this.state.password};
+    API.registerUser(userObj).then((res)=>{
+      console.log(res)
+      if (!res.data.errmsg) {
+        console.log('successful signup')
+        // If user successfully added to database, redirect to login page
+        this.props.history.push("/login");
+      } else {
+        console.log('username already exists')
+      }
+    }).catch(error => {
+      console.log('signup error: ')
+      console.log(error)
     })
-
-
-
-
-
-		// Request to server to add a new user data
-		axios.post('/user/', {
-      username: this.state.username,
-			email: this.state.email,
-			password: this.state.password
-		})
-			.then(res => {
-				console.log(res)
-				if (!res.data.errmsg) {
-					console.log('successful signup')
-          // If user successfully added to database, redirect to login page
-          this.props.history.push("/login");
-				} else {
-					console.log('username already exists')
-				}
-			}).catch(error => {
-				console.log('signup error: ')
-				console.log(error)
-			})
-  }
+  };
 
   render() {
     return (

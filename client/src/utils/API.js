@@ -1,10 +1,16 @@
 import axios from "axios";
 
 export default {
-   getUser: function (id) {
-      return axios.get("/api/users/" + id)
+   findUser: function (id) {
+      return axios.get("/api/user/" + id)
    },
-   saveUser: function (newUserData) {
-      return axios.post("/api/users", newUserData)
+   login: function (userData) {
+      return axios.post("/api/user/login", userData)
+   },
+   registerUser: function (newUserData) {
+      return axios.post("/api/user", newUserData)
+   },
+   logout: function (logoutQuery) {
+      return axios.post("/api/user/logout", logoutQuery)
    }
 };

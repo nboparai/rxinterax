@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 // import logo from '../logo.svg';
 import '../App.css';
-import axios from 'axios'
+import API from '../utils/API'
 
 class Navbar extends Component {
     constructor() {
@@ -11,21 +11,22 @@ class Navbar extends Component {
         this.logout = this.logout.bind(this)
     }
 
-    logout(event) {
-        event.preventDefault()
-        console.log('logging out')
-        axios.post('/user/logout').then(response => {
-          console.log(response.data)
-          if (response.status === 200) {
+   logout = () => {
+      // event.preventDefault()
+      console.log('logging out')
+      
+      API.logout().then((res)=>{
+         console.log(res.data)
+         if (res.status === 200) {
             this.props.updateUser({
-              loggedIn: false,
-              username: null
+               loggedIn: false,
+               username: null
             })
-          }
-        }).catch(error => {
-            console.log('Logout error')
-        })
-      }
+         }
+      }).catch(error => {
+         console.log('Logout error')
+      })   
+   }
 
     render() {
         const loggedIn = this.props.loggedIn;
