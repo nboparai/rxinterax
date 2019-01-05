@@ -10,7 +10,7 @@ const passport = require("./server/passport");
 const app = express();
 const PORT = process.env.PORT || 3001;
 // Routes | User
-const user = require("./server/routes/users");
+const user = require("./server/routes/user");
 
 // Middleware
 app.use(morgan('dev'));

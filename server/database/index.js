@@ -9,7 +9,7 @@ const uri = 'mongodb://localhost:27017/rxinterax'
 // Connect to Mongo database
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax", { useNewUrlParser: true });
 
-mongoose.connect(uri).then(
+mongoose.connect(uri, { useNewUrlParser: true }).then(
     () => { 
         /** Ready to use. The `mongoose.connect()` promise resolves to undefined. */ 
         console.log('Connected to Mongo');
@@ -20,8 +20,8 @@ mongoose.connect(uri).then(
          console.log('error connecting to Mongo: ')
          console.log(err);
          
-        }
-  );
+    }
+);
 
 
 module.exports = mongoose.connection
