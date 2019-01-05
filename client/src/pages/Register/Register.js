@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import {withRouter} from 'react-router-dom'
-import axios from 'axios'
-import { Input, Label, Button, Form, FormGroup } from "reactstrap"
-import "./Register.css"
+import React, { Component } from "react":
+import {withRouter} from "react-router-dom";
+import API from "../../utils/API";
+import { Input, Label, Button, Form, FormGroup } from "reactstrap";
+import "./Register.css":
 
 // https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
@@ -30,6 +30,14 @@ class Register extends Component {
     console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
 		event.preventDefault()
+
+    API.saveUser(userObj).then((res)=>{
+      
+    })
+
+
+
+
 
 		// Request to server to add a new user data
 		axios.post('/user/', {

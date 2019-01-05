@@ -1,10 +1,10 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   saveUser: function(newUserData){
-//     return axios.post("/api/users", newUserData)
-//   },
-//   getUser: function(id){
-//     return axios.get("/api/users/" + id)
-//   }
-// };
+export default {
+   getUser: function (id) {
+      return axios.get("/api/users/" + id)
+   },
+   saveUser: function (newUserData) {
+      return axios.post("/api/users", newUserData)
+   }
+};
