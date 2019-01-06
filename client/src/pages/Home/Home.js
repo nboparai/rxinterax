@@ -45,6 +45,7 @@ class Home extends Component {
   };
   render() {
     return (
+      
       <div>
         <Jumbotron>
           <h1> Enter your prescriptions</h1>

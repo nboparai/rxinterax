@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import API from "../../utils/API";
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
@@ -25,32 +25,30 @@ class Login extends Component {
     })
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    console.log('Login-page handleSubmit')
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Login-page handleSubmit');
+    console.log(this.state.username);
 
-    axios.post('/user/login', {
-      username: this.state.username,
-      password: this.state.password
+    let userObj = {username: this.state.username, password: this.state.password};
+    API.login(userObj).then((res)=>{
+      console.log('login response: ')
+      console.log(res)
+      if (res.status === 200) {
+        // update App.js state
+        this.props.updateUser({
+          loggedIn: true,
+          username: res.data.username
+        })
+        // update the state to redirect to home
+        this.setState({
+          redirectTo: "/"
+        })
+      }
+    }).catch(error => {
+        console.log('login error: ')
+        console.log(error);   
     })
-      .then(res => {
-        console.log('login response: ')
-        console.log(res)
-        if (res.status === 200) {
-          // update App.js state
-          this.props.updateUser({
-            loggedIn: true,
-            username: res.data.username
-          })
-          // update the state to redirect to home
-          this.setState({
-            redirectTo: "/"
-          })
-        }
-      }).catch(error => {
-          console.log('login error: ')
-          console.log(error);     
-      })
   }
 
   render() {
