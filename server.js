@@ -3,14 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const session = require("express-session");
-// const mongoose = require("mongoose");
-const dbConnection = require("./server/database");
-const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 const passport = require("./server/passport");
 const app = express();
 const PORT = process.env.PORT || 3001;
-// Routes | User
-const user = require("./server/routes/users");
+// Routes
+const routes = require("./server/routes");
 
 // Middleware
 app.use(morgan('dev'));
@@ -24,7 +22,6 @@ if (process.env.NODE_ENV === "production") {
 // Use sessions to keep track of user login status
 app.use(session({ 
 	secret: "keyboard cat", // Random string to make the hash that is generated secure
-	store: new MongoStore({ mongooseConnection: dbConnection }),
 	resave: false, 
 	saveUninitialized: false,
 }));
@@ -33,8 +30,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // Calls the deserializeUser
 
-// User route
-app.use('/user', user);
+// Routes
+app.use(routes);
+
+// Local database url ~ 27017 is the default mongoDB port
+const uri = 'mongodb://localhost:27017/rxinterax'
+// Connect to Mongo database
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax", { useNewUrlParser: true });
+mongoose.connect(uri, { useNewUrlParser: true });
 
 // Start API server
 app.listen(PORT, () => {
