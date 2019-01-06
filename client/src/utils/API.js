@@ -1,10 +1,13 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   saveUser: function(newUserData){
-//     return axios.post("/api/users", newUserData)
-//   },
-//   getUser: function(id){
-//     return axios.get("/api/users/" + id)
-//   }
-// };
+export default {
+// Gets user saved preciptions
+getUserMeds: function(){
+    return axios.get("/drugs");
+ },
+
+ //save user precription info
+saveMeds: function(MedsData, userId) {
+    return axios.post(`/${userId}`, MedsData);
+  }
+};
