@@ -1,6 +1,18 @@
 import axios from "axios";
 
 export default {
+
+// Gets user saved preciptions
+getUserMeds: function(){
+    return axios.get("/drugs");
+ },
+
+ //save user precription info
+saveMeds: function(MedsData, userId) {
+    return axios.post(`/${userId}`, MedsData);
+  }
+},
+
    findUser: function (id) {
       return axios.get("/api/user/" + id)
    },
@@ -14,3 +26,4 @@ export default {
       return axios.post("/api/user/logout", logoutQuery)
    }
 };
+
