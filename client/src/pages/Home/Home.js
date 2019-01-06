@@ -36,7 +36,8 @@ class Home extends Component {
         title: this.state.name,
         author: this.state.strength,
         synopsis: this.state.dosage
-      }, "5c310aaa8ee0f1302cd92c59"//need to pass userId)
+      }, "5c310aaa8ee0f1302cd92c59") //need to pass userId
+      
         .then(res => this.loadMeds())
         // console.log(res)
         .catch(err => console.log(err));
