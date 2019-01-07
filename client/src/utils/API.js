@@ -3,8 +3,8 @@ import axios from "axios";
 export default {
 
    // Gets user saved preciptions
-   getUserMeds: function () {
-      return axios.get("/api/drugs");
+   getUserMeds: function (userid) {
+      return axios.get("/api/drugs/all/" + userid);
    },
 
    //save user precription info

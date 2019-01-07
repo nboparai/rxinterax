@@ -5,7 +5,7 @@ import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 
 class Home extends Component {
-  state ={
+  state = {
     meds: [],
     medname: "",
     strength: "",
@@ -13,14 +13,23 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // this.loadMeds();
+    if (this.props.userid.length) {
+      this.loadMeds(this.props.userid);
+    }
   }
 
-  loadMeds = () => {
-    API.getUserMeds()
-      .then(res => 
-        this.setState({meds: res.data, strength: "", dosage: ""}))
-        .catch(err => console.log(err));
+  loadMeds = (userid) => {
+    API.getUserMeds(userid)
+      .then(res => {
+        // Alex 1/6/19 - For some reason res is giving me an object, below is forcing into an array
+        let drugArray = [];
+        for (let i = 0; i < res.data[0].drugs.length; i++) {
+          let drug = res.data[0].drugs[i].medname
+          drugArray.push(drug);
+        }
+        this.setState({meds: drugArray, medname: "", strength: "", dosage: ""})
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
@@ -38,17 +47,14 @@ class Home extends Component {
         strength: this.state.strength,
         dosage: this.state.dosage
       }, this.props.userid) //need to pass userId - done Alex 1/9/16
-      
-        .then(
-          // res => this.loadMeds())
-        // console.log(res)
-        )
+
+        .then(res => this.loadMeds(this.props.userid))
         .catch(err => console.log(err));
     }
   };
   render() {
     return (
-      
+
       <div>
         <Jumbotron>
           <h1> Enter your prescriptions</h1>
@@ -78,19 +84,19 @@ class Home extends Component {
           <FormBtn
             disabled={!(this.state.medname && this.state.dosage)}
             onClick={this.handleFormSubmit}
-            >
+          >
             Submit Info
           </FormBtn>
         </form>
-        
-         {this.state.meds.length ? (
-           <List>
-             {this.state.meds.map(med => (
-               <li>{med}</li>
-             ))}
-           </List>
-         ):null}
-        
+
+        {this.state.meds.length ? (
+          <List>
+            {this.state.meds.map(med => (
+              <li>{med}</li>
+            ))}
+          </List>
+        ) : null}
+
       </div>
     )
   }
