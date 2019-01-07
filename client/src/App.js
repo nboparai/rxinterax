@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import React, { Component } from "react";
+import axios from "axios";
+import { Route } from "react-router-dom";
 // Components
-import Register from './pages/Register'
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Navbar from "./components/navbar";
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get('/user/').then(res => {
+    API.findUser().then((res) =>{ 
       console.log('Get user response: ')
       console.log(res.data)
       if (res.data.user) {

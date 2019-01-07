@@ -12,7 +12,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      redirectTo: null
+      redirectTo:null,
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)  
@@ -35,20 +35,20 @@ class Login extends Component {
       console.log('login response: ')
       console.log(res)
       if (res.status === 200) {
-        // update App.js state
+        // Update App.js state
         //Alex 1/6/19 - Added userid
         this.props.updateUser({
           loggedIn: true,
           username: res.data.username,
           userid: res.data.userid
         })
-        // update the state to redirect to home
+        // Update the state to redirect to home
         this.setState({
           redirectTo: "/console/" + res.data.userid
         })
       }
     }).catch(error => {
-        alert("Someith was wrong with your username or password");
+        // alert("Something was wrong with your username or password");
         console.log('login error: ')
         console.log(error);   
     })
@@ -88,7 +88,7 @@ class Login extends Component {
               </FormGroup>
               <Button 
                   className="btn btn-info btn-block" 
-                  onClick={this.handleSubmit}
+                  onClick={this.handleSubmit} 
                   type="submit"
               >Login</Button>
             </Form>
