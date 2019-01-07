@@ -9,7 +9,11 @@ class Home extends Component {
     meds: [],
     medname: "",
     strength: "",
-    dosage: ""
+    dosage: "",
+    submitMedId: "",
+    rxcui: '',
+    drugIDs: [],
+    interactions: []
   }
 
   componentDidMount() {
@@ -27,7 +31,7 @@ class Home extends Component {
           let drug = res.data[0].drugs[i].medname
           drugArray.push(drug);
         }
-        this.setState({meds: drugArray, medname: "", strength: "", dosage: ""})
+        this.setState({ meds: drugArray, strength: "", dosage: "" });
       })
       .catch(err => console.log(err));
   };
@@ -48,10 +52,48 @@ class Home extends Component {
         dosage: this.state.dosage
       }, this.props.userid) //need to pass userId - done Alex 1/9/16
 
-        .then(res => this.loadMeds(this.props.userid))
+        .then(res => {
+          // Sets the database _id for the med just submitted
+          this.setState({ submitMedId: res.data._id });
+          //Initiates API for finding the rxcui for the submitted medname
+          this.drugIDSearch(this.state.medname)
+          //reloads the med list
+          this.loadMeds(this.props.userid)
+        }
+        )
         .catch(err => console.log(err));
     }
   };
+
+  updateDrugdb = (id, rxcui) => {
+    API.upateDrugdb(id, {
+      rxcui: rxcui
+    })
+      .then(res => {
+        this.setState({ submitMedId: ""});
+      })
+  }
+
+  drugIDSearch = (drugs) => {
+    API.drugIDSearch(drugs)
+      .then(res => {
+        console.log(res.data.approximateGroup.candidate[0].rxcui);
+        //stores rxcui in state and clears medname as we no longer need it
+        this.setState({ rxcui: res.data.approximateGroup.candidate[0].rxcui, medname: "" });
+        console.log('rxcui ' + this.state.rxcui)
+        this.updateDrugdb(this.state.submitMedId, this.state.rxcui)
+      }
+      );
+  }
+
+
+  drugInteractionSearch = (drugids) => {
+    if (this.state.drugids.length > 1) {
+      API.drugInteractionSearch(drugids)
+        .then()
+    }
+  }
+
   render() {
     return (
 

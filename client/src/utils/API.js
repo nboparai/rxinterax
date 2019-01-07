@@ -23,6 +23,15 @@ export default {
    },
    logout: function (logoutQuery) {
       return axios.post("/api/user/logout", logoutQuery)
+   },
+   drugIDSearch: function (drugs) {
+      return axios.get(`https://rxnav.nlm.nih.gov/REST/approximateTerm?term=${drugs}&maxEntries=1`)
+   },
+   upateDrugdb: function (id, rxcui) {
+      return axios.put("/api/drugs/update/" +id, rxcui)
+   },
+   drugInteractionSearch: function (drugids) {
+
    }
 };
 
