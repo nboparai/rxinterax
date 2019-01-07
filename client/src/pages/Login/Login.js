@@ -36,16 +36,19 @@ class Login extends Component {
       console.log(res)
       if (res.status === 200) {
         // update App.js state
+        //Alex 1/6/19 - Added userid
         this.props.updateUser({
           loggedIn: true,
-          username: res.data.username
+          username: res.data.username,
+          userid: res.data.userid
         })
         // update the state to redirect to home
         this.setState({
-          redirectTo: "/"
+          redirectTo: "/console/" + res.data.userid
         })
       }
     }).catch(error => {
+        alert("Someith was wrong with your username or password");
         console.log('login error: ')
         console.log(error);   
     })

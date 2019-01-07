@@ -5,21 +5,45 @@ import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 
 class Home extends Component {
-  state ={
+  state = {
     meds: [],
+    medname: "",
     strength: "",
-    dosage: ""
+    dosage: "",
+    submitMedId: "",
+    rxcui: '',
+    drugIDs: [],
+    interactions: []
   }
 
   componentDidMount() {
-    // this.loadMeds();
+    if (this.props.userid.length) {
+      this.loadMeds(this.props.userid);
+    }
   }
 
-  loadMeds = () => {
-    API.getUserMeds()
-      .then(res => 
-        this.setState({meds: res.data, strength: "", dosage: ""}))
-        .catch(err => console.log(err));
+  loadMeds = (userid) => {
+    API.getUserMeds(userid)
+      .then(res => {
+        // Push drug names into med array
+        let drugArray = [];
+        for (let i = 0; i < res.data[0].drugs.length; i++) {
+          let drug = res.data[0].drugs[i].medname
+          drugArray.push(drug);
+        }
+        this.setState({ meds: drugArray, strength: "", dosage: "" });
+        // Push rxcui id into drugid array
+        let idArray = [];
+        for (let i = 0; i < res.data[0].drugs.length; i++) {
+          let id = res.data[0].drugs[i].rxcui;
+          // idArray.push(id);
+          idArray = [...idArray, id];
+        }
+        this.setState({ drugIDs: idArray });
+        // had to move up here because for some reason this.state.drugids only returned most recent value
+        this.drugInteractionSearch(idArray);
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
@@ -31,21 +55,61 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.strength) {
+    if (this.state.medname && this.state.strength) {
       API.saveMeds({
-        title: this.state.name,
-        author: this.state.strength,
-        synopsis: this.state.dosage
-      }, "5c310aaa8ee0f1302cd92c59") //need to pass userId
-      
-        .then(res => this.loadMeds())
-        // console.log(res)
+        medname: this.state.medname,
+        strength: this.state.strength,
+        dosage: this.state.dosage
+      }, this.props.userid) //need to pass userId - done Alex 1/9/16
+
+        .then(res => {
+          // Sets the database _id for the med just submitted
+          this.setState({ submitMedId: res.data._id });
+          //Initiates API for finding the rxcui for the submitted medname
+          this.drugIDSearch(this.state.medname)
+        }
+        )
         .catch(err => console.log(err));
     }
   };
+
+  updateDrugdb = (id, rxcui) => {
+    API.upateDrugdb(id, {
+      rxcui: rxcui
+    })
+      .then(res => {
+        this.setState({ submitMedId: "" });
+        // had to move the search below up into the loadmeds method 
+        // this.drugInteractionSearch(this.state.rxcui);
+
+        //reloads the med list
+        this.loadMeds(this.props.userid)
+      })
+  }
+
+  drugIDSearch = (drugs) => {
+    API.drugIDSearch(drugs)
+      .then(res => {
+        //stores rxcui in state and clears medname as we no longer need it
+        this.setState({ rxcui: res.data.approximateGroup.candidate[0].rxcui, medname: "" });
+        this.updateDrugdb(this.state.submitMedId, this.state.rxcui)
+      }
+      );
+  }
+
+
+  drugInteractionSearch = (drugids) => {
+    API.drugInteractionSearch(drugids)
+      .then(res => {
+        // need to display data on screen -----------------------------------------------------------------------------------------
+        console.log("interaction data")
+        console.log(res.data);
+      })
+  }
+
   render() {
     return (
-      
+
       <div>
         <Jumbotron>
           <h1> Enter your prescriptions</h1>
@@ -55,7 +119,7 @@ class Home extends Component {
           <Input
             value={this.state.title}
             onChange={this.handleInputChange}
-            name="name"
+            name="medname"
             placeholder="Name (required)"
           />
 
@@ -73,22 +137,23 @@ class Home extends Component {
             placeholder="Dosage (optional)"
           />
           <FormBtn
-            disabled={!(this.state.name && this.state.dosage)}
+            disabled={!(this.state.medname && this.state.dosage)}
             onClick={this.handleFormSubmit}
-            >
+          >
             Submit Info
           </FormBtn>
         </form>
-        
-         {this.state.meds.length ? (
-           <List>
-             {this.state.meds.map(med => (
-               <li>{med}</li>
-             ))}
-           </List>
-         ):null}
-        
+
+        {this.state.meds.length ? (
+          <List>
+            {this.state.meds.map(med => (
+              <li>{med}</li>
+            ))}
+          </List>
+        ) : null}
+
       </div>
+
     )
   }
 }

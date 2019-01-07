@@ -15,7 +15,9 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      //Alex 1/6/19 - Added userid
+      userid: ''
     }
 
     this.getUser = this.getUser.bind(this)
@@ -25,6 +27,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser()
+
   }
 
   updateUser(userObject) {
@@ -55,25 +58,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        {/* Alex 1/6/19 - Added userid */}
+        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} userid={this.state.userid} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }
 
         {/* Routes to different pages/components */}
-        <Route exact path="/" component={Home} />
-        <Route path="/login" render={() => 
-          <Login 
-            updateUser={this.updateUser} 
+        <Route exact path="/console/:id" render={({match}) =>
+          <Home
+            userid={match.params.id}
           />}
         />
-        <Route
-          path="/signup"
-          render={() =>
-            <Register/>}
+        <Route exact path="/" render={() =>
+          <Login
+            updateUser={this.updateUser}
+          />}
         />
+        <Route exact path="/signup" component={Register} />
 
       </div>
     );

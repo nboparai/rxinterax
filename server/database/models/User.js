@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   	email: { type: String, required: true },
   	password: { type: String, required: true },
   	date: { type: Date, default: Date.now() },
-	drug: { type: Schema.Types.ObjectId, ref: "Drug" }
+	drugs: [{ type: Schema.Types.ObjectId, ref: "Drug" }]
 });  
 
 // Define schema methods
