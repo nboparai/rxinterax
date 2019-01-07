@@ -25,13 +25,23 @@ class Home extends Component {
   loadMeds = (userid) => {
     API.getUserMeds(userid)
       .then(res => {
-        // Alex 1/6/19 - For some reason res is giving me an object, below is forcing into an array
+        // Push drug names into med array
         let drugArray = [];
         for (let i = 0; i < res.data[0].drugs.length; i++) {
           let drug = res.data[0].drugs[i].medname
           drugArray.push(drug);
         }
         this.setState({ meds: drugArray, strength: "", dosage: "" });
+        // Push rxcui id into drugid array
+        let idArray = [];
+        for (let i = 0; i < res.data[0].drugs.length; i++) {
+          let id = res.data[0].drugs[i].rxcui;
+          // idArray.push(id);
+          idArray = [...idArray, id];
+        }
+        this.setState({ drugIDs: idArray });
+        // had to move up here because for some reason this.state.drugids only returned most recent value
+        this.drugInteractionSearch(idArray);
       })
       .catch(err => console.log(err));
   };
@@ -57,8 +67,6 @@ class Home extends Component {
           this.setState({ submitMedId: res.data._id });
           //Initiates API for finding the rxcui for the submitted medname
           this.drugIDSearch(this.state.medname)
-          //reloads the med list
-          this.loadMeds(this.props.userid)
         }
         )
         .catch(err => console.log(err));
@@ -70,17 +78,20 @@ class Home extends Component {
       rxcui: rxcui
     })
       .then(res => {
-        this.setState({ submitMedId: ""});
+        this.setState({ submitMedId: "" });
+        // had to move the search below up into the loadmeds method 
+        // this.drugInteractionSearch(this.state.rxcui);
+
+        //reloads the med list
+        this.loadMeds(this.props.userid)
       })
   }
 
   drugIDSearch = (drugs) => {
     API.drugIDSearch(drugs)
       .then(res => {
-        console.log(res.data.approximateGroup.candidate[0].rxcui);
         //stores rxcui in state and clears medname as we no longer need it
         this.setState({ rxcui: res.data.approximateGroup.candidate[0].rxcui, medname: "" });
-        console.log('rxcui ' + this.state.rxcui)
         this.updateDrugdb(this.state.submitMedId, this.state.rxcui)
       }
       );
@@ -88,10 +99,12 @@ class Home extends Component {
 
 
   drugInteractionSearch = (drugids) => {
-    if (this.state.drugids.length > 1) {
-      API.drugInteractionSearch(drugids)
-        .then()
-    }
+    API.drugInteractionSearch(drugids)
+      .then(res => {
+        // need to display data on screen -----------------------------------------------------------------------------------------
+        console.log("interaction data")
+        console.log(res.data);
+      })
   }
 
   render() {
@@ -140,6 +153,7 @@ class Home extends Component {
         ) : null}
 
       </div>
+
     )
   }
 }

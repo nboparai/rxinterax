@@ -31,6 +31,9 @@ export default {
       return axios.put("/api/drugs/update/" +id, rxcui)
    },
    drugInteractionSearch: function (drugids) {
+      console.log("drugids")
+      console.log(drugids)
+      return axios.get(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${drugids.join('+')}`)
 
    }
 };
