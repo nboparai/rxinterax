@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const drugsController = require("../../controllers/drugController");
+const drugsController = require("../../controllers/drugsController");
 
 
-router.route("/drugs")
+router.route("/")
   .get(drugsController.findAll);
 router.route("/:id")
   .post(drugsController.create)

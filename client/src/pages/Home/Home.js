@@ -7,6 +7,7 @@ import Jumbotron from "../../components/Jumbotron";
 class Home extends Component {
   state ={
     meds: [],
+    medname: "",
     strength: "",
     dosage: ""
   }
@@ -31,15 +32,17 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.strength) {
+    if (this.state.medname && this.state.strength) {
       API.saveMeds({
-        title: this.state.name,
-        author: this.state.strength,
-        synopsis: this.state.dosage
-      }, "5c310aaa8ee0f1302cd92c59") //need to pass userId
+        medname: this.state.medname,
+        strength: this.state.strength,
+        dosage: this.state.dosage
+      }, this.props.userid) //need to pass userId - done Alex 1/9/16
       
-        .then(res => this.loadMeds())
+        .then(
+          // res => this.loadMeds())
         // console.log(res)
+        )
         .catch(err => console.log(err));
     }
   };
@@ -55,7 +58,7 @@ class Home extends Component {
           <Input
             value={this.state.title}
             onChange={this.handleInputChange}
-            name="name"
+            name="medname"
             placeholder="Name (required)"
           />
 
@@ -73,7 +76,7 @@ class Home extends Component {
             placeholder="Dosage (optional)"
           />
           <FormBtn
-            disabled={!(this.state.name && this.state.dosage)}
+            disabled={!(this.state.medname && this.state.dosage)}
             onClick={this.handleFormSubmit}
             >
             Submit Info

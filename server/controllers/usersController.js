@@ -34,10 +34,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  // Alex 1/6/19 - Added user id to userInfo object. Passing along to add user id to home url for access later
   authorize: function(req, res) {
       console.log('logged in', req.user);
       var userInfo = {
-          username: req.user.username
+          username: req.user.username,
+          userid: req.user._id
       };
       res.send(userInfo);
   },

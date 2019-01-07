@@ -9,15 +9,13 @@ findAll: function(req, res) {
         .catch(err => res.status(422).json(err));
     },
 create: function(req, res) {
-
     db.Drug
         .create(req.body)
         .then(dbDrug => {
-            return db.User.findOneAndUpdate({_id:req.params.id}, { $push: { drugs: dbDrug._id } }, { new: true })
+
+           return db.User.findOneAndUpdate({ _id: req.params.id}, { $push: { drugs: dbDrug._id } }, { returnOriginal:false })
         })
         .then(dbUserMeds => res.json(dbUserMeds))
-        
-        .catch(err => res.status(422).json(err))
-        
+        .catch(err => res.status(422).json(err)) 
     }
 }

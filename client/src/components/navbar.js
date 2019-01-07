@@ -11,6 +11,7 @@ class Navbar extends Component {
         this.logout = this.logout.bind(this)
     }
 
+
    logout = () => {
       // event.preventDefault()
       console.log('logging out')
@@ -46,10 +47,11 @@ class Navbar extends Component {
                             </section>
                         ) : (
                                 <section className="navbar-section">
-                                    <Link to="/" className="btn btn-link text-secondary">
+                                    {/* Alex 1/6/19 - Changed route of main page and added user id */}
+                                    <Link to={"/console/" + this.props.userid} className="btn btn-link text-secondary">
                                         <span className="text-secondary">home</span>
                                         </Link>
-                                    <Link to="/login" className="btn btn-link text-secondary">
+                                    <Link to="/" className="btn btn-link text-secondary">
                                     <span className="text-secondary">login</span>
 				</Link>
                                     <Link to="/signup" className="btn btn-link">

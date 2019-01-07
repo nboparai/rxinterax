@@ -4,12 +4,12 @@ export default {
 
    // Gets user saved preciptions
    getUserMeds: function () {
-      return axios.get("/drugs");
+      return axios.get("/api/drugs");
    },
 
    //save user precription info
    saveMeds: function (MedsData, userId) {
-      return axios.post(`/${userId}`, MedsData);
+      return axios.post(`/api/drugs/${userId}`, MedsData);
    },
 
    findUser: function (id) {
