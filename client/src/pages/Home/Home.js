@@ -101,15 +101,16 @@ class Home extends Component {
     API.drugInteractionSearch(drugids)
       .then(res => {
         if (res.data.fullInteractionTypeGroup){
-          let interactionArray = [];
-          for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
-            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
-              ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
-  
-            interactionArray = [...interactionArray, x];
-          }
-          this.setState({ interactions: interactionArray });
+
+        let interactionArray = [];
+        for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
+          let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
+            ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+
+          interactionArray = [...interactionArray, x];
         }
+        this.setState({ interactions: interactionArray });
+      }
       })
     }
 
