@@ -3,6 +3,8 @@ import API from '../../utils/API';
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
+import Navbar from "../../components/Navbar";
+
 
 class Home extends Component {
   state = {
@@ -13,7 +15,7 @@ class Home extends Component {
     submitMedId: "",
     rxcui: '',
     drugIDs: [],
-    interactions: []
+    interactions: [],
   }
 
   componentDidMount() {
@@ -67,24 +69,23 @@ class Home extends Component {
           this.setState({ submitMedId: res.data._id });
           //Initiates API for finding the rxcui for the submitted medname
           this.drugIDSearch(this.state.medname)
-        }
-        )
+        })
         .catch(err => console.log(err));
     }
-  };
+  }
 
   updateDrugdb = (id, rxcui) => {
     API.upateDrugdb(id, {
       rxcui: rxcui
     })
-      .then(res => {
-        this.setState({ submitMedId: "" });
-        // had to move the search below up into the loadmeds method 
-        // this.drugInteractionSearch(this.state.rxcui);
+    .then(res => {
+      this.setState({ submitMedId: "" });
+      // had to move the search below up into the loadmeds method 
+      // this.drugInteractionSearch(this.state.rxcui);
 
-        //reloads the med list
-        this.loadMeds(this.props.userid)
-      })
+      //reloads the med list
+      this.loadMeds(this.props.userid)
+    })
   }
 
   drugIDSearch = (drugs) => {
@@ -93,10 +94,8 @@ class Home extends Component {
         //stores rxcui in state and clears medname as we no longer need it
         this.setState({ rxcui: res.data.approximateGroup.candidate[0].rxcui, medname: "" });
         this.updateDrugdb(this.state.submitMedId, this.state.rxcui)
-      }
-      );
+      })
   }
-
 
   drugInteractionSearch = (drugids) => {
     API.drugInteractionSearch(drugids)
@@ -111,6 +110,17 @@ class Home extends Component {
     return (
 
       <div>
+
+        {/* MODIFYING STYLES */}
+        {/* ---------------------------------------------------------------- */}
+        {/* Alex 1/6/19 - Added userid */}
+        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} userid={this.state.userid} />
+        {/* greet user if logged in: */}
+        {this.state.loggedIn &&
+          <p>Join the party, {this.state.username}!</p>
+        }
+        {/* ---------------------------------------------------------------- */}
+
         <Jumbotron>
           <h1> Enter your prescriptions</h1>
         </Jumbotron>

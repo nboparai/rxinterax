@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
+import { Col, Row, Container } from "../../components/Grid";
 import { Input, Label, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 

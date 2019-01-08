@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-// import logo from '../logo.svg';
-import '../App.css';
-import API from '../utils/API'
+import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import API from "../utils/API";
+import "../App.css";
 
 class Navbar extends Component {
-    constructor() {
+    constructor() { 
         super()
         this.logout = this.logout.bind(this)
     }
-
 
    logout = () => {
       // event.preventDefault()
@@ -36,36 +34,34 @@ class Navbar extends Component {
         
         return (
             <div>
-
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
                         {loggedIn ? (
                             <section className="navbar-section">
                                 <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span></Link>
-
+                                    <span className="text-secondary">logout</span>
+                                </Link>
                             </section>
                         ) : (
-                                <section className="navbar-section">
-                                    {/* Alex 1/6/19 - Changed route of main page and added user id */}
-                                    {/* <Link to={"/console/" + this.props.userid} className="btn btn-link text-secondary">
-                                        <span className="text-secondary">home</span>
-                                        </Link> */}
-                                    <Link to="/" className="btn btn-link text-secondary">
+                            <section className="navbar-section">
+                                {/* Alex 1/6/19 - Changed route of main page and added user id */}
+                                {/* <Link to={"/console/" + this.props.userid} className="btn btn-link text-secondary">
+                                    <span className="text-secondary">home</span>
+                                </Link> */}
+                                <Link to="/" className="btn btn-link text-secondary">
                                     <span className="text-secondary">Login</span>
-				</Link>
-                                    <Link to="/signup" className="btn btn-link">
+				                </Link>
+                                
+                                <Link to="/signup" className="btn btn-link">
                                     <span className="text-secondary">Sign Up</span>
-				</Link>
-                                </section>
-                            )}
+				                </Link>
+                            </section>
+                        )}
                     </div>                
                 </header>
             </div>
-
-        );
-
+        )
     }
-}
+};
 
-export default Navbar
+export default Navbar;
