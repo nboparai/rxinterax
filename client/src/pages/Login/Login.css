@@ -1,61 +1,80 @@
-body, html {
-   background-color: #63738a;
-}
-.login-form {
-   width: 500px;
-   margin: 3rem auto;
-   color: #949494;
-   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-   border-radius: 3px;
-   padding: 35px;
-   background: #F2F3F7;
-   margin-bottom: 20px;
+* {
+   box-sizing: border-box;
 }
 
-.login-form h1 {
-   position: relative;
-   text-align: center;
-   color: #636363;
-   margin: 0 0 20px;
-   font-size: 2rem;
+body {
+   font-size: 1.25rem;
+   line-height: 150%;
+   /* text-shadow: 0 2px 2px #b6701e; */
 }
 
-.login-form h1:before, .login-form h1:after {
-   content: "";
-   height: 2px;
-   width: 30%;
-   background: #d4d4d4;
+section {
+   color: #fff;
+}
+
+div {
+   height: 100%;
+}
+
+article {
    position: absolute;
    top: 50%;
-   z-index: 2;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 100%;
+   padding: 5.5rem;
 }
 
-.login-form h1:before {
-   left: 0;
+.container {
+   display: table;
+   width: 100%;
 }
 
-.login-form h1:after {
-   right: 0;
+.left-half {
+   font-family: 'Montserrat', sans-serif;
+   background-color: #151a22;
+   position: absolute;
+   left: 0px;
+   width: 55%;
+}
+
+.right-half {
+   font-family: 'Montserrat', sans-serif;
+   background-color: #00a876;
+   position: absolute;
+   right: 0px;
+   width: 45%;
+}
+
+.welcome-section,
+.welcome-header,
+.welcome-subtitle,
+.welcome-subtext,
+.register-btn {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: normal;
 }
 
 .form-control {
-   margin-bottom: 15px;
+   margin-bottom: 10px;
 }
 
-label {
-   margin-bottom: .3rem;
+.login-form h1 {
+   font-family: 'Montserrat', sans-serif;
+   margin: 0 0 35px;
+   font-size: 2rem;
+   font-weight: normal;
 }
 
-.btn {
+.login-btn {
    font-weight: bold;
-   margin: 25px 0;
-   padding: 8px;
+   text-transform: uppercase;
+   color: black;
+   padding: 7px 30px;
+   margin-top: 5px;
 }
 
-.text-center {
-   color: white;
-}
-
-.text-center a {
-   color: #49c1a2;
+.register-btn {
+   background-color: #00a876;
+   border-color: #00a876;
 }

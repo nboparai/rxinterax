@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 // Components
-import Register from './pages/Register'
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Navbar from "./components/navbar";
-import API from "./utils/API"
+// import Navbar from "./components/Navbar";
+// import API from "./utils/API";
+import axios from "axios";
+
 
 import "./App.css";
 
@@ -58,12 +59,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
+        {/* MODIFYING STYLES ~~~ MOVING NAVBAR TO HOME PAGE. */}
+        {/* MOVE GETUSER() & UPDATEUSER() TO HOME PAGE AFTER STYLING */}
+        {/* ---------------------------------------------------------------- */}
         {/* Alex 1/6/19 - Added userid */}
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} userid={this.state.userid} />
+        {/* <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} userid={this.state.userid} /> */}
         {/* greet user if logged in: */}
-        {this.state.loggedIn &&
+        {/* {this.state.loggedIn && 
           <p>Join the party, {this.state.username}!</p>
-        }
+        }  */}
+        {/* ---------------------------------------------------------------- */}
+
 
         {/* Routes to different pages/components */}
         <Route exact path="/console/:id" render={({match}) =>

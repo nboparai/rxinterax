@@ -3,8 +3,8 @@ const usersController = require("../../controllers/usersController");
 const passport = require('../../passport')
 
 // Matches with "/api/user"
-router.route("/")
-  .get(usersController.findAll)
+router.route("/signup")
+  // .get(usersController.findAll)   not necessary
   .post(usersController.register);
 
 // Matches with "/api/user/:id"

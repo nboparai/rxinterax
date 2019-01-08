@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
-import { Input, Label, Button, Form, FormGroup } from "reactstrap";
+// import { Row, Container } from "../../components/Grid";
+import { Input, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
 // https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
@@ -12,10 +13,11 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      redirectTo: null
+      redirectTo:null,
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)  
+    this.routeChange = this.routeChange.bind(this)
   }
 
   handleChange(event) {
@@ -35,22 +37,28 @@ class Login extends Component {
       console.log('login response: ')
       console.log(res)
       if (res.status === 200) {
-        // update App.js state
+        // Update App.js state
         //Alex 1/6/19 - Added userid
         this.props.updateUser({
           loggedIn: true,
           username: res.data.username,
           userid: res.data.userid
         })
-        // update the state to redirect to home
+        // Update the state to redirect to home
         this.setState({
           redirectTo: "/console/" + res.data.userid
         })
       }
     }).catch(error => {
-        alert("Someith was wrong with your username or password");
+        // alert("Something was wrong with your username or password");
         console.log('login error: ')
         console.log(error);   
+    })
+  }
+
+  routeChange(){
+    this.setState({ 
+      redirectTo: "/signup"
     })
   }
 
@@ -59,44 +67,58 @@ class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-        <div>
-          <div className="login-form"> 
-            <h1>Login</h1>
-            <Form>
-              <FormGroup>
-                <Label htmlFor="username">Username</Label>
-                <Input
-                  className="form-control"
-                  id="username"
-                  name="username"
-                  type="text"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                />
-              </FormGroup>
+        <section className="container">
+          <div className="left-half"> 
+            <article>
+              <div className="welcome-section">
+                  <h1 className="welcome-header">Welcome</h1>
+                  <h2 className="welcome-subtitle">Register for an RxInterax account here.</h2>
 
-              <FormGroup>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </FormGroup>
-              <Button 
-                  className="btn btn-info btn-block" 
-                  onClick={this.handleSubmit}
-                  type="submit"
-              >Login</Button>
-            </Form>
+                  <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
+                  <Button className="register-btn" onClick={this.routeChange}>Register Here</Button>
+
+              </div>
+            </article>
           </div>
-          <div className="text-center">Don't have an account? 
-              <a href="/signup"> Register here</a>
+
+          <div className="right-half">
+            <article> 
+            <div className="login-form"> 
+                <h1>Or login to your account</h1>
+                <Form>
+                  <FormGroup>
+                    <Input
+                      className="form-control"
+                      id="username"
+                      name="username"
+                      type="text"
+                      placeholder="Your username"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Input
+                      className="form-control"
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                  </FormGroup>
+                  <Button 
+                      className="btn login-btn btn-light" 
+                      onClick={this.handleSubmit} 
+                      type="submit"
+                  >Login</Button>
+                </Form>
+              </div>
+              </article>  
           </div>
-        </div>
+        </section>
       )
     }
   }
