@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
-// import { Row, Container } from "../../components/Grid";
+import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 
@@ -66,61 +66,65 @@ class Login extends Component {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
-      return (
-        <section className="container">
-          <div className="left-half"> 
-            <article>
-              <div className="welcome-section">
-                  <h1 className="welcome-header">Welcome</h1>
-                  <h2 className="welcome-subtitle">Register for an RxInterax account here. It's free and only takes a minute!</h2>
+    return (
+      <section className="container">
+        <div className="left-half"> 
+          <article>
+            <div className="welcome-section">
+                <h1 className="welcome-header">Welcome</h1>
+                <h2 className="welcome-subtitle">Register for an RxInterax account here.</h2>
 
-                  <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
-                  <Button className="register-btn" onClick={this.routeChange}>Register Here</Button>
+                <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
+                <Button className="switch-btn" onClick={this.routeChange}>Register Here</Button>
 
-              </div>
-            </article>
-          </div>
+            </div>
+          </article>
+        </div>
 
-          <div className="right-half">
-            <article> 
-            <div className="login-form"> 
-                <h1>Or login to your account</h1>
-                <Form>
-                  <FormGroup>
-                    <Input
-                      className="form-control"
-                      id="username"
-                      name="username"
-                      type="text"
-                      placeholder="Your username"
-                      value={this.state.username}
-                      onChange={this.handleChange}
-                    />
-                  </FormGroup>
+        <div className="right-half">
+          <article> 
+          <div className="login-form"> 
+              <h2 className="login-header">Or login to your account</h2>
+              <Form>
+                <FormGroup>
+                  <Input
+                    className="form-control"
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Your username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
 
-                  <FormGroup>
-                    <Input
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                      value={this.state.password}
-                      onChange={this.handleChange}
-                    />
-                  </FormGroup>
-                  <Button 
-                      className="btn login-btn btn-light" 
-                      onClick={this.handleSubmit} 
-                      type="submit"
-                  >Login</Button>
-                </Form>
-              </div>
-            </article>  
-          </div>
-        </section>
-      )
-    }
+                <FormGroup>
+                  <Input
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <Button 
+                    className="login-signup-btn" 
+                    onClick={this.handleSubmit} 
+                    type="submit"
+                >Login</Button>
+              </Form>
+            </div>
+          </article>  
+        </div>
+        <Footer
+          appName="RxInterax"
+          gitHub="GitHub Repo"
+          gitHubLink="https://github.com/savannahcarr/rxinterax.git"
+        />
+      </section>
+    )}
   }
 }
 export default Login

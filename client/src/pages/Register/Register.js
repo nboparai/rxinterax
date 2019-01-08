@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import {withRouter, Redirect} from "react-router-dom";
 import API from "../../utils/API";
+import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
 import "./Register.css";
-
-// https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
-
-// --------------------------------------------------------------
-//     SAV - REDO REGISTER PAGE TO MATCH LOGIN
-// --------------------------------------------------------------
 
 class Register extends Component {
   constructor() {
@@ -73,7 +68,7 @@ class Register extends Component {
                   <h2 className="welcome-subtitle">Already an RxInterax member?</h2>
 
                   <p className="welcome-subtext">Login to your RxInterax account here and get access to the prescription interaction member portal.</p>
-                  <Button className="login-btn" onClick={this.routeChange}>Login Here</Button>
+                  <Button className="switch-btn" onClick={this.routeChange}>Login Here</Button>
             
             </div>
           </article>
@@ -82,7 +77,7 @@ class Register extends Component {
         <div className="right-half">
           <article> 
             <div className="signup-form">
-              <h1>Register</h1>
+              <h2 className="login-header">Register</h2>
               <Form>
                 <FormGroup>
                   <Input
@@ -120,7 +115,7 @@ class Register extends Component {
                   />
                 </FormGroup>
                 <Button 
-                    className="btn login-btn btn-light" 
+                    className="login-signup-btn" 
                     onClick={this.handleSubmit} 
                     type="submit"
                 >Sign up</Button>
@@ -128,9 +123,14 @@ class Register extends Component {
             </div>
           </article>
         </div>
+        <Footer
+            appName="RxInterax"
+            gitHub="GitHub Repo"
+            gitHubLink="https://github.com/savannahcarr/rxinterax.git"
+        />
       </section>
-    )
-    }
+    )}
   }
 }
+
 export default withRouter(Register)
