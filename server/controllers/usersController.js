@@ -36,7 +36,7 @@ module.exports = {
   },
   // Alex 1/6/19 - Added user id to userInfo object. Passing along to add user id to home url for access later
   authorize: function(req, res) {
-      console.log('logged in', req.user);
+      console.log('login authorized', req.user);
       var userInfo = {
           username: req.user.username,
           userid: req.user._id

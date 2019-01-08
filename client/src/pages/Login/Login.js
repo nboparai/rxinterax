@@ -72,7 +72,7 @@ class Login extends Component {
             <article>
               <div className="welcome-section">
                   <h1 className="welcome-header">Welcome</h1>
-                  <h2 className="welcome-subtitle">Register for an RxInterax account here.</h2>
+                  <h2 className="welcome-subtitle">Register for an RxInterax account here. It's free and only takes a minute!</h2>
 
                   <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
                   <Button className="register-btn" onClick={this.routeChange}>Register Here</Button>
@@ -116,7 +116,7 @@ class Login extends Component {
                   >Login</Button>
                 </Form>
               </div>
-              </article>  
+            </article>  
           </div>
         </section>
       )
