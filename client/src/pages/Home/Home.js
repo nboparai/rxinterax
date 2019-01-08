@@ -101,9 +101,16 @@ class Home extends Component {
   drugInteractionSearch = (drugids) => {
     API.drugInteractionSearch(drugids)
       .then(res => {
-        // need to display data on screen -----------------------------------------------------------------------------------------
-        console.log("interaction data")
-        console.log(res.data);
+        if (res.data.fullInteractionTypeGroup){
+        let interactionArray = [];
+        for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
+          let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
+            ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+
+          interactionArray = [...interactionArray, x];
+        }
+        this.setState({ interactions: interactionArray });
+      }
       })
   }
 
@@ -148,6 +155,14 @@ class Home extends Component {
           <List>
             {this.state.meds.map(med => (
               <li>{med}</li>
+            ))}
+          </List>
+        ) : null}
+
+        {this.state.interactions.length ? (
+          <List>
+            {this.state.interactions.map(interaction => (
+              <li>{interaction}</li>
             ))}
           </List>
         ) : null}
