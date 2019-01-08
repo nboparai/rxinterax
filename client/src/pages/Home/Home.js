@@ -100,11 +100,18 @@ class Home extends Component {
   drugInteractionSearch = (drugids) => {
     API.drugInteractionSearch(drugids)
       .then(res => {
-        // need to display data on screen -----------------------------------------------------------------------------------------
-        console.log("interaction data")
-        console.log(res.data);
+        if (res.data.fullInteractionTypeGroup){
+          let interactionArray = [];
+          for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
+            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
+              ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+  
+            interactionArray = [...interactionArray, x];
+          }
+          this.setState({ interactions: interactionArray });
+        }
       })
-  }
+    }
 
   render() {
     return (
@@ -114,11 +121,11 @@ class Home extends Component {
         {/* MODIFYING STYLES */}
         {/* ---------------------------------------------------------------- */}
         {/* Alex 1/6/19 - Added userid */}
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} userid={this.state.userid} />
+        <Navbar userid={this.state.userid} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn &&
+        {/* {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
-        }
+        } */}
         {/* ---------------------------------------------------------------- */}
 
         <Jumbotron>
@@ -162,8 +169,15 @@ class Home extends Component {
           </List>
         ) : null}
 
-      </div>
+        {this.state.interactions.length ? (
+          <List>
+            {this.state.interactions.map(interaction => (
+              <li>{interaction}</li>
+            ))}
+          </List>
+        ) : null}
 
+      </div>
     )
   }
 }

@@ -6,6 +6,10 @@ import "./Register.css";
 
 // https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
 
+// --------------------------------------------------------------
+//     SAV - REDO REGISTER PAGE TO MATCH LOGIN
+// --------------------------------------------------------------
+
 class Register extends Component {
   constructor() {
     super()

@@ -17,6 +17,7 @@ class Login extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)  
+    this.routeChange = this.routeChange.bind(this)
   }
 
   handleChange(event) {
@@ -55,6 +56,12 @@ class Login extends Component {
     })
   }
 
+  routeChange(){
+    this.setState({ 
+      redirectTo: "/signup"
+    })
+  }
+
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -63,12 +70,13 @@ class Login extends Component {
         <section className="container">
           <div className="left-half"> 
             <article>
-              <div classname="welcome-section">
+              <div className="welcome-section">
                   <h1 className="welcome-header">Welcome</h1>
                   <h2 className="welcome-subtitle">Register for an RxInterax account here.</h2>
 
                   <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
-                  <Button className="register-btn">Register Here</Button>
+                  <Button className="register-btn" onClick={this.routeChange}>Register Here</Button>
+
               </div>
             </article>
           </div>
@@ -108,9 +116,6 @@ class Login extends Component {
                   >Login</Button>
                 </Form>
               </div>
-              {/* <div className="text-center">Don't have an account? 
-                  <a href="/signup"> Register here</a>
-              </div> */}
               </article>  
           </div>
         </section>
