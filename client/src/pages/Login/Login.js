@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
+import swal from "sweetalert2";
 
 // https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
 
@@ -50,7 +51,7 @@ class Login extends Component {
         })
       }
     }).catch(error => {
-        // alert("Something was wrong with your username or password");
+        swal("Something was wrong with your username or password");
         console.log('login error: ')
         console.log(error);   
     })
