@@ -27,35 +27,20 @@ class Navbar extends Component {
       })   
    }
 
+
+    // sav 01/08 --- removed ternary operator & login/signup option. only logout necessary
     render() {
-        const loggedIn = this.props.loggedIn;
         console.log('navbar render, props: ')
         console.log(this.props);
         
         return (
             <div>
                 <header className="navbar App-header" id="nav-container">
-                    {loggedIn ? (
-                        <section className="navbar-section">
-                            <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span>
-                            </Link>
-                        </section>
-                    ) : (
-                        <section className="navbar-section">
-                            {/* Alex 1/6/19 - Changed route of main page and added user id */}
-                            {/* <Link to={"/console/" + this.props.userid} className="btn btn-link text-secondary">
-                                <span className="text-secondary">home</span>
-                            </Link> */}
-                            <Link to="/" className="btn btn-link text-secondary">
-                                <span className="text-secondary">Login</span>
-				            </Link>
-                            
-                            <Link to="/signup" className="btn btn-link">
-                                <span className="text-secondary">Sign Up</span>
-				            </Link>
-                        </section>
-                    )}
+                    <section className="navbar-section">
+                        <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
+                            <span className="text-secondary">logout</span>
+                        </Link>
+                    </section>
                 </header>
             </div>
         )
