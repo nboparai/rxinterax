@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
 import "./Login.css";
 import swal from "sweetalert2";
+import logo from "../../assets/img/logo.png"
 
 // https://codepen.io/nathansebhastian/pen/pxprOq?editors=0010
 
@@ -70,9 +71,7 @@ class Login extends Component {
     return (
       <section className="container">
         <div className="left-half"> 
-          <h1 className="char1">R</h1>
-          <h1 className="char2">x</h1>
-
+          <img className="logo" alt="RxInterax" src={logo} />
           <article>
             <div className="welcome-section">
                 <h1 className="welcome-header">Welcome</h1>
@@ -80,7 +79,6 @@ class Login extends Component {
 
                 <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
                 <Button className="switch-btn" onClick={this.routeChange}>Register Here</Button>
-
             </div>
           </article>
         </div>
@@ -101,7 +99,6 @@ class Login extends Component {
                     onChange={this.handleChange}
                   />
                 </FormGroup>
-
                 <FormGroup>
                   <Input
                     className="form-control"

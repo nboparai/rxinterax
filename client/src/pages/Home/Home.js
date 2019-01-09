@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
-import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import Navbar from "../../components/navbar";
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import logo from "../../assets/img/logo.png"
 import "./Home.css";
+import Navbar from "../../components/Navbar"
 
 class Home extends Component {
   constructor() {
@@ -67,7 +67,7 @@ class Home extends Component {
         this.setState({ drugIDs: idArray,
         // --------------------------------------------- 
         // ---------- Styling purposes ~ remove when done ----------
-          loggedIn: true
+          // loggedIn: true
         // --------------------------------------------- 
         });
         // had to move up here because for some reason this.state.drugids only returned most recent value
@@ -152,6 +152,8 @@ class Home extends Component {
         {/* --------------------------------------------- */}
         <Navbar loggedIn={this.state.loggedIn} /> 
         {/* --------------------------------------------- */}
+        
+        <img className="logo" alt="RxInterax" src={logo} />
 
         <div className="meds-form-container">
           <h2 className="meds-form-header">Enter your prescriptions</h2>
@@ -197,15 +199,16 @@ class Home extends Component {
         </ListGroup>
 
         {/* User interaction container */}
-        <div className="interaction-container">
+        <ListGroup className="interaction-container">
+        <ListGroupItemHeading>Drug Interaction Results</ListGroupItemHeading>
           {this.state.interactions.length ? (
-            <List>
+            <ListGroupItem>
               {this.state.interactions.map(interaction => (
-                <li>{interaction}</li>
+                <li className="interaction-item">{interaction}</li>
               ))}
-            </List>
+            </ListGroupItem>
           ) : null}
-        </div>
+        </ListGroup>
 
       </section>
     )}

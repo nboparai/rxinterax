@@ -4,6 +4,8 @@ import API from "../../utils/API";
 import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
 import swal from "sweetalert2";
+import logo from "../../assets/img/logo.png"
+
 
 class Register extends Component {
   constructor() {
@@ -71,8 +73,8 @@ class Register extends Component {
     return (
       <section className="container">
         <div className="left-half"> 
-          <h1 className="char1">R</h1>
-          <h1 className="char2">x</h1>
+         
+        <img className="logo" alt="RxInterax" src={logo} />
 
           <article>
             <div className="welcome-section">

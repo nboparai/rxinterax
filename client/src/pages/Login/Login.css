@@ -30,22 +30,11 @@ article {
    width: 100%;
 }
 
-.char1 {
-   font-family: 'Charm', cursive;
+.logo {
+   width: 60px;
    position: relative;
-   top: 7%;
-   left: 14%;
-   font-weight: normal;
-   color: rgb(155, 154, 154);
-}
-
-.char2 {
-   font-family: 'Charm', cursive;
-   position: relative;
-   top: 1.7%;
-   left: 17.2%;
-   font-weight: normal;
-   color: rgb(155, 154, 154);
+   top: 5%;
+   left: 12%;
 }
 
 .left-half {
