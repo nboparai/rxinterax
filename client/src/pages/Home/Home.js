@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 
 
 class Home extends Component {
@@ -122,7 +122,7 @@ class Home extends Component {
         {/* MODIFYING STYLES */}
         {/* ---------------------------------------------------------------- */}
         {/* Alex 1/6/19 - Added userid */}
-        <Navbar userid={this.state.userid} />
+        {/* <Navbar userid={this.state.userid} /> */}
         {/* greet user if logged in: */}
         {/* {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
