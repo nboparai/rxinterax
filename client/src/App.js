@@ -78,6 +78,7 @@ class App extends Component {
         <Route exact path="/console/:id" render={({match}) =>
           <Home
             userid={match.params.id}
+            loggedin={this.state.loggedIn}
           />}
         />
         <Route exact path="/" render={() =>
