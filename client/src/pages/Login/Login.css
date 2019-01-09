@@ -18,7 +18,7 @@ div {
 
 article {
    position: absolute;
-   top: 50%;
+   top: 47%;
    left: 50%;
    transform: translate(-50%, -50%);
    width: 100%;
@@ -30,8 +30,27 @@ article {
    width: 100%;
 }
 
+.char1 {
+   font-family: 'Charm', cursive;
+   position: relative;
+   top: 7%;
+   left: 14%;
+   font-weight: normal;
+   color: rgb(155, 154, 154);
+}
+
+.char2 {
+   font-family: 'Charm', cursive;
+   position: relative;
+   top: 1.7%;
+   left: 17.2%;
+   font-weight: normal;
+   color: rgb(155, 154, 154);
+}
+
 .left-half {
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: lighter;   
    background-color: #151a22;
    position: absolute;
    left: 0px;
@@ -39,7 +58,8 @@ article {
 }
 
 .right-half {
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: lighter;   
    background-color: #00a876;
    position: absolute;
    right: 0px;
@@ -50,31 +70,67 @@ article {
 .welcome-header,
 .welcome-subtitle,
 .welcome-subtext,
-.register-btn {
-   font-family: 'Montserrat', sans-serif;
-   font-weight: normal;
+.login-header {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: lighter;
+}
+
+.welcome-header {
+   font-size: 2.6rem;
+   font-weight: lighter;
+   letter-spacing: 2px;
+}
+
+.welcome-subtitle {
+   color: rgb(141, 140, 140);
+   margin-top: 10px;
+   font-size: 1.5rem;
+}
+
+.welcome-subtext {
+   color: rgb(141, 140, 140);
+   margin: 2rem 0 2rem 0;
+   font-size: 1rem;
+   line-height: 1.7rem;
+}
+
+.form-header {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: lighter;  
+   font-size: 1.5rem;
+   color: rgba(255, 255, 255, 0.897);
+   margin-bottom: 2rem;
+   padding-top: 4rem;
 }
 
 .form-control {
    margin-bottom: 10px;
 }
 
-.login-form h1 {
-   font-family: 'Montserrat', sans-serif;
-   margin: 0 0 35px;
-   font-size: 2rem;
-   font-weight: normal;
-}
-
-.login-btn {
+.login-signup-btn {
+   font-family: 'Open Sans', sans-serif;
    font-weight: bold;
    text-transform: uppercase;
-   color: black;
-   padding: 7px 30px;
+   letter-spacing: 2.5px;
+   font-size: .8rem;
+   line-height: initial;
+   background-color: #fff;
+   color: #00a876;
+   border-color: #00976a;
+   padding: 11px 32px;
    margin-top: 5px;
+   border-radius: 25px;
 }
 
-.register-btn {
+.switch-btn {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: bold;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+   font-size: .8rem;
+   line-height: initial;
    background-color: #00a876;
    border-color: #00a876;
+   padding: 11px 30px;
+   border-radius: 25px;
 }

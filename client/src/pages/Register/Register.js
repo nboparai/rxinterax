@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
+import {withRouter, Redirect} from "react-router-dom";
 import API from "../../utils/API";
-import { Input, Label, Button, Form, FormGroup } from "reactstrap";
-import "./Register.css";
-
-// https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
-
-// --------------------------------------------------------------
-//     SAV - REDO REGISTER PAGE TO MATCH LOGIN
-// --------------------------------------------------------------
+import Footer from "../../components/Footer";
+import { Input, Button, Form, FormGroup } from "reactstrap";
 
 class Register extends Component {
   constructor() {
@@ -18,9 +12,11 @@ class Register extends Component {
       email: "",
       password: "",
       confirmPassword: "",
+      redirectTo:null,
     };
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.routeChange = this.routeChange.bind(this)
   }
 
   handleChange(event) {
@@ -42,6 +38,7 @@ class Register extends Component {
         console.log('successful signup')
         // If user successfully added to database, redirect to login page
         this.props.history.push("/");
+      
       } else {
         console.log('username already exists')
       }
@@ -49,60 +46,93 @@ class Register extends Component {
       console.log('signup error: ')
       console.log(error)
     })
-  };
+  }
+
+  routeChange(){ 
+    this.setState({ 
+      redirectTo: "/"
+    })
+  }
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
     return (
-      <div>
-        <div className="signup-form"> 
-          <h1>Register</h1>
-          <p>Create your account. It's free and only takes a minute.</p> 
-          <Form>
-            <FormGroup>
-              <Label htmlFor="username">Username</Label>
-              <Input
-                className="form-control"
-                id="username"
-                name="username"
-                type="text"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                className="form-control"
-                id="email"
-                name="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                className="form-control"
-                id="password"
-                name="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <Button 
-                className="btn btn-info btn-block" 
-                onClick={this.handleSubmit} 
-                type="submit"
-            >Sign up</Button>
-          </Form>
+      <section className="container">
+        <div className="left-half"> 
+          <h1 className="char1">R</h1>
+          <h1 className="char2">x</h1>
+
+          <article>
+            <div className="welcome-section">
+                  <h1 className="welcome-header">Register</h1>
+                  <h2 className="welcome-subtitle">A single account for your peace of mind.</h2>
+
+                  <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
+                  <Button className="switch-btn" onClick={this.routeChange}>I already have an account</Button>
+            
+            </div>
+          </article>
+        </div>  
+
+        <div className="right-half">
+          <article> 
+            <div>
+              <h2 className="form-header">Create account</h2>
+              <Form>
+                <FormGroup>
+                  <Input
+                    className="form-control"
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Input
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Your email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Input
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <Button 
+                    className="login-signup-btn" 
+                    onClick={this.handleSubmit} 
+                    type="submit"
+                >Register</Button>
+              </Form>
+            </div>
+          </article>
         </div>
-        <div className="text-center">Already have an account? 
-            <a href="/login"> Login here</a>
-        </div>
-      </div>
-    )
+        <Footer
+            appName="RxInterax"
+            gitHub="GitHub Repo"
+            gitHubLink="https://github.com/savannahcarr/rxinterax.git"
+        />
+      </section>
+    )}
   }
 }
+
 export default withRouter(Register)

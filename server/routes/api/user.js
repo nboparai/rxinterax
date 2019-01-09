@@ -2,12 +2,10 @@ const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
 const passport = require('../../passport')
 
-// Matches with "/api/user"
-router.route("/signup")
-  // .get(usersController.findAll)   not necessary
+router
+  .route("/")
   .post(usersController.register);
 
-// Matches with "/api/user/:id"
 router
   .route("/:id")
   .get(usersController.findById)
