@@ -3,7 +3,6 @@ import {withRouter, Redirect} from "react-router-dom";
 import API from "../../utils/API";
 import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
-import "./Register.css";
 
 class Register extends Component {
   constructor() {
@@ -62,13 +61,16 @@ class Register extends Component {
     return (
       <section className="container">
         <div className="left-half"> 
+          <h1 className="char1">R</h1>
+          <h1 className="char2">x</h1>
+
           <article>
             <div className="welcome-section">
-                  <h1 className="welcome-header">Welcome</h1>
-                  <h2 className="welcome-subtitle">Already an RxInterax member?</h2>
+                  <h1 className="welcome-header">Register</h1>
+                  <h2 className="welcome-subtitle">A single account for your peace of mind.</h2>
 
-                  <p className="welcome-subtext">Login to your RxInterax account here and get access to the prescription interaction member portal.</p>
-                  <Button className="switch-btn" onClick={this.routeChange}>Login Here</Button>
+                  <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
+                  <Button className="switch-btn" onClick={this.routeChange}>I already have an account</Button>
             
             </div>
           </article>
@@ -76,8 +78,8 @@ class Register extends Component {
 
         <div className="right-half">
           <article> 
-            <div className="signup-form">
-              <h2 className="login-header">Register</h2>
+            <div>
+              <h2 className="form-header">Create account</h2>
               <Form>
                 <FormGroup>
                   <Input
@@ -85,7 +87,7 @@ class Register extends Component {
                     id="username"
                     name="username"
                     type="text"
-                    placeholder="Create your username"
+                    placeholder="Username"
                     value={this.state.username}
                     onChange={this.handleChange}
                   />
@@ -118,7 +120,7 @@ class Register extends Component {
                     className="login-signup-btn" 
                     onClick={this.handleSubmit} 
                     type="submit"
-                >Sign up</Button>
+                >Register</Button>
               </Form>
             </div>
           </article>

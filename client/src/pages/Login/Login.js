@@ -69,6 +69,9 @@ class Login extends Component {
     return (
       <section className="container">
         <div className="left-half"> 
+          <h1 className="char1">R</h1>
+          <h1 className="char2">x</h1>
+
           <article>
             <div className="welcome-section">
                 <h1 className="welcome-header">Welcome</h1>
@@ -83,8 +86,8 @@ class Login extends Component {
 
         <div className="right-half">
           <article> 
-          <div className="login-form"> 
-              <h2 className="login-header">Or login to your account</h2>
+          <div>
+              <h2 className="form-header">Or login to your account</h2>
               <Form>
                 <FormGroup>
                   <Input
