@@ -10,7 +10,20 @@ body {
 html,
 section {
    background-color: #151a22;
+}
 
+section.navbar-section {
+   width: 100%;
+}
+span.text-secondary {
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+.console-content {
+   width: 100%;
+   padding: 5.5rem;
 }
 
 .App-header {

@@ -16,6 +16,8 @@ class Home extends Component {
     rxcui: '',
     drugIDs: [],
     interactions: [],
+
+    loggedIn: null
   }
 
   componentDidMount() {
@@ -41,7 +43,12 @@ class Home extends Component {
           // idArray.push(id);
           idArray = [...idArray, id];
         }
-        this.setState({ drugIDs: idArray });
+        this.setState({ drugIDs: idArray,
+        // --------------------------------------------- 
+        // ---------- Styling purposes ~ remove when done ----------
+          loggedIn: true
+        // --------------------------------------------- 
+        });
         // had to move up here because for some reason this.state.drugids only returned most recent value
         this.drugInteractionSearch(idArray);
       })
@@ -116,48 +123,52 @@ class Home extends Component {
   render() {
     return (
       <section className="console-container">
-        <Jumbotron>
-          <h1> Enter your prescriptions</h1>
-        </Jumbotron>
+      {/* --------------------------------------------- */}
+      {/* Implement Navbar for console styling purposes */}
+      {/* --------------------------------------------- */}
+        <Navbar loggedIn={this.state.loggedIn} /> 
+      {/* --------------------------------------------- */}
 
-        <form className="med-form"> 
-          <Input
-            value={this.state.title}
-            onChange={this.handleInputChange}
-            name="medname"
-            placeholder="Name (required)"
-          />
+        <div className="console-content">
+          <h2 className="med-header">Enter your prescriptions</h2>
+          <form className="med-form"> 
+            <Input
+              value={this.state.title}
+              onChange={this.handleInputChange}
+              name="medname"
+              placeholder="Name (required)"
+            />
 
-          <Input
-            value={this.state.dosage}
-            onChange={this.handleInputChange}
-            name="dosage"
-            placeholder="Dosage (optional)"
-          />
-          <FormBtn
-            disabled={!(this.state.medname)}
-            onClick={this.handleFormSubmit}
-          >
-            Submit Info
-          </FormBtn>
-        </form>
+            <Input
+              value={this.state.dosage}
+              onChange={this.handleInputChange}
+              name="dosage"
+              placeholder="Dosage (optional)"
+            />
+            <FormBtn
+              disabled={!(this.state.medname)}
+              onClick={this.handleFormSubmit}
+            >
+              Submit Info
+            </FormBtn>
+          </form>
 
-        {this.state.meds.length ? (
-          <List>
-            {this.state.meds.map(med => (
-              <li>{med}</li>
-            ))}
-          </List>
-        ) : null}
+          {this.state.meds.length ? (
+            <List>
+              {this.state.meds.map(med => (
+                <li>{med}</li>
+              ))}
+            </List>
+          ) : null}
 
-        {this.state.interactions.length ? (
-          <List>
-            {this.state.interactions.map(interaction => (
-              <li>{interaction}</li>
-            ))}
-          </List>
-        ) : null}
-
+          {this.state.interactions.length ? (
+            <List>
+              {this.state.interactions.map(interaction => (
+                <li>{interaction}</li>
+              ))}
+            </List>
+          ) : null}
+        </div>
       </section>
     )
   }
