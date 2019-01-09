@@ -17,7 +17,6 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: null,
-      //Alex 1/6/19 - Added userid
       userid: ''
     }
 

@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import Jumbotron from "../../components/Jumbotron";
 import Navbar from "../../components/Navbar";
+import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import "./Home.css";
 
 class Home extends Component {
@@ -26,10 +26,17 @@ class Home extends Component {
 }
 
   componentDidMount() {
-    if(!this.props.loggedin) {
-      this.routeChange();
-    }
-    else if (this.props.userid.length) {
+    // --------------------------------------------
+    // COMMENT BACK IN AFTER STYLING FINISHED ON CONSOLE
+    // --------------------------------------------
+
+    // if(!this.props.loggedin) {
+    //   this.routeChange();
+    // }
+    // else 
+    // --------------------------------------------
+
+    if (this.props.userid.length) {
       this.loadMeds(this.props.userid);
     }
   }
@@ -139,17 +146,16 @@ class Home extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
     return (      
-      
-<section className="console-container">
-      {/* --------------------------------------------- */}
-      {/* Implement Navbar for console styling purposes */}
-      {/* --------------------------------------------- */}
+      <section className="console-container">
+        {/* --------------------------------------------- */}
+        {/* Implement Navbar for console styling purposes */}
+        {/* --------------------------------------------- */}
         <Navbar loggedIn={this.state.loggedIn} /> 
-      {/* --------------------------------------------- */}
+        {/* --------------------------------------------- */}
 
-        <div className="console-content">
-          <h2 className="med-header">Enter your prescriptions</h2>
-          <form className="med-form"> 
+        <div className="meds-form-container">
+          <h2 className="meds-form-header">Enter your prescriptions</h2>
+          <form className="form"> 
             <Input
               value={this.state.title}
               onChange={this.handleInputChange}
@@ -164,21 +170,34 @@ class Home extends Component {
               placeholder="Dosage (optional)"
             />
             <FormBtn
+              className="meds-submit-btn"
               disabled={!(this.state.medname)}
               onClick={this.handleFormSubmit}
             >
               Submit Info
             </FormBtn>
           </form>
+        </div>
 
+        {/* User medication container */}
+        <ListGroup className="user-meds-container">
+          <ListGroupItemHeading>Current Medications</ListGroupItemHeading>
+          <ListGroupItemText>
+            Your current medications are listed below. 
+            Please update or delete medications to reflect your 
+            current routine.
+          </ListGroupItemText>
           {this.state.meds.length ? (
-            <List>
+            <ListGroupItem>
               {this.state.meds.map(med => (
-                <li>{med}</li>
+                <li className="med-list-item">{med}</li>
               ))}
-            </List>
+            </ListGroupItem>
           ) : null}
+        </ListGroup>
 
+        {/* User interaction container */}
+        <div className="interaction-container">
           {this.state.interactions.length ? (
             <List>
               {this.state.interactions.map(interaction => (
