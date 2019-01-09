@@ -57,10 +57,9 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.medname && this.state.strength) {
+    if (this.state.medname) {
       API.saveMeds({
         medname: this.state.medname,
-        strength: this.state.strength,
         dosage: this.state.dosage
       }, this.props.userid) //need to pass userId - done Alex 1/9/16
 
@@ -142,20 +141,13 @@ class Home extends Component {
           />
 
           <Input
-            value={this.state.strength}
-            onChange={this.handleInputChange}
-            name="strength"
-            placeholder="Strength (required)"
-          />
-
-          <Input
             value={this.state.dosage}
             onChange={this.handleInputChange}
             name="dosage"
             placeholder="Dosage (optional)"
           />
           <FormBtn
-            disabled={!(this.state.medname && this.state.dosage)}
+            disabled={!(this.state.medname)}
             onClick={this.handleFormSubmit}
           >
             Submit Info

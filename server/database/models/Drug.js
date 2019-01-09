@@ -9,7 +9,7 @@ const DrugSchema = new Schema({
   // `medname` is of type String
   medname: {type: String, required: true},
   // `strength` is of type String
-  strength: {type: String, required: true},
+  strength: {type: String, required: false},
  // `dosage` is of type String
   dosage: {type: String, required: false},
   //drug id from database
