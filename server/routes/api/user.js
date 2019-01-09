@@ -3,7 +3,7 @@ const usersController = require("../../controllers/usersController");
 const passport = require('../../passport')
 
 router
-  .route("/")
+  .route("/signup")
   .post(usersController.register);
 
 router
