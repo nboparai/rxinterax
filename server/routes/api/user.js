@@ -6,11 +6,12 @@ router
   .route("/signup")
   .post(usersController.register);
 
+
 router
   .route("/:id")
   .get(usersController.findById)
   .put(usersController.update)
-  .delete(usersController.remove);
+  .delete(usersController.remove)
 
 router
   .route("/login")
