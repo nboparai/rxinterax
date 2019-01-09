@@ -13,7 +13,7 @@ section {
    background-color: #151a22;
 } 
 
-/* ---- Navbar styles ---- */
+/* ---- Navbar ---- */
 section.navbar-section {
    width: 100%;
    height: 50px;
@@ -24,12 +24,12 @@ span.text-secondary {
    top: 40%;
    right: 5%;
 }
-/* ------------------------ */
 
 .console-container {
    width: 100%;
 }
 
+/* ---- Med input form ---- */
 .meds-form-container {
    padding: 5.5rem;
 }
@@ -57,8 +57,8 @@ span.text-secondary {
    border-radius: 25px;
 }
 
-.user-meds-container,
-.interaction-container {
+/* ---- User medications ---- */
+.user-meds-container {
    padding: 1rem 5.5rem;
 }
 
@@ -74,8 +74,8 @@ span.text-secondary {
 .list-group-item-heading {
    padding: 1.5rem 2rem .5rem 1.5rem;
    font-size: 1.7rem;
-   border-top-left-radius: 3px;
-   border-top-right-radius: 3px;
+   border-top-left-radius: 7px;
+   border-top-right-radius: 7px;
 }
 
 .list-group-item-text {
@@ -88,6 +88,11 @@ span.text-secondary {
    padding: 1.2rem 1.5rem;
 }
 
+.list-group-item:last-child {
+   border-bottom-right-radius: 7px;
+   border-bottom-left-radius: 7px;
+}
+
 .med-list-item {
    padding-right: 3rem;
    color: #00a876;
@@ -95,3 +100,7 @@ span.text-secondary {
    letter-spacing: 1px;
 }
 
+/* ---- Med interactions  */
+.interaction-container {
+   padding: 1rem 5.5rem;
+}

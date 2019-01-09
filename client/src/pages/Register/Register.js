@@ -37,7 +37,10 @@ class Register extends Component {
       if (!res.data.errmsg) {
         console.log('successful signup')
         // If user successfully added to database, redirect to login page
-        this.props.history.push("/");
+        // this.props.history.push("/");
+        this.setState({
+          redirectTo: "/console/:id"
+        })
       
       } else {
         console.log('username already exists')

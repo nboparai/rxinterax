@@ -4,13 +4,14 @@ const passport = require('../../passport')
 
 router
   .route("/")
-  .post(usersController.register);
+  .post(usersController.findAll)
+  .post(usersController.register)
 
 router
   .route("/:id")
   .get(usersController.findById)
   .put(usersController.update)
-  .delete(usersController.remove);
+  .delete(usersController.remove)
 
 router
   .route("/login")
