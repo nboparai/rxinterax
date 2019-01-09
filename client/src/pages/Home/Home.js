@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import API from '../../utils/API';
+import React, { Component } from "react"
+import API from "../../utils/API";
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
-import Navbar from "../../components/navbar";
-
+import Navbar from "../../components/Navbar";
+import "./Home.css";
 
 class Home extends Component {
   state = {
@@ -115,24 +115,12 @@ class Home extends Component {
 
   render() {
     return (
-
-      <div>
-
-        {/* MODIFYING STYLES */}
-        {/* ---------------------------------------------------------------- */}
-        {/* Alex 1/6/19 - Added userid */}
-        {/* <Navbar userid={this.state.userid} /> */}
-        {/* greet user if logged in: */}
-        {/* {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
-        } */}
-        {/* ---------------------------------------------------------------- */}
-
+      <section className="console-container">
         <Jumbotron>
           <h1> Enter your prescriptions</h1>
         </Jumbotron>
 
-        <form>
+        <form className="med-form"> 
           <Input
             value={this.state.title}
             onChange={this.handleInputChange}
@@ -170,7 +158,7 @@ class Home extends Component {
           </List>
         ) : null}
 
-      </div>
+      </section>
     )
   }
 }

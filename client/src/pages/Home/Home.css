@@ -1,0 +1,23 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-size: 1.25rem;
+   line-height: 150%;
+}
+
+html,
+section {
+   background-color: #151a22;
+
+}
+
+.App-header {
+   background-color: #151a22;
+}
+
+.med-form {
+   width: 50%;
+}
+
