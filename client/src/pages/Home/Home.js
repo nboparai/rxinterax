@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
@@ -7,7 +8,9 @@ import Navbar from "../../components/Navbar";
 import "./Home.css";
 
 class Home extends Component {
-  state = {
+  constructor() {
+  super()
+  this.state = {
     meds: [],
     medname: "",
     strength: "",
@@ -16,14 +19,25 @@ class Home extends Component {
     rxcui: '',
     drugIDs: [],
     interactions: [],
-
-    loggedIn: null
-  }
+    loggedIn: null,
+    redirectTo: null,
+  };
+  this.routeChange = this.routeChange.bind(this)
+}
 
   componentDidMount() {
-    if (this.props.userid.length) {
+    if(!this.props.loggedin) {
+      this.routeChange();
+    }
+    else if (this.props.userid.length) {
       this.loadMeds(this.props.userid);
     }
+  }
+
+  routeChange(){
+    this.setState({ 
+      redirectTo: "/"
+    })
   }
 
   loadMeds = (userid) => {
@@ -121,8 +135,12 @@ class Home extends Component {
     }
 
   render() {
-    return (
-      <section className="console-container">
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+    return (      
+      
+<section className="console-container">
       {/* --------------------------------------------- */}
       {/* Implement Navbar for console styling purposes */}
       {/* --------------------------------------------- */}
@@ -169,8 +187,9 @@ class Home extends Component {
             </List>
           ) : null}
         </div>
+
       </section>
-    )
+    )}
   }
 }
 
