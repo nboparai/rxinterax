@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { List } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import "./Home.css";
 

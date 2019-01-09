@@ -3,6 +3,7 @@ import {withRouter, Redirect} from "react-router-dom";
 import API from "../../utils/API";
 import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
+import swal from "sweetalert2";
 
 class Register extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class Register extends Component {
     let userObj = {username: this.state.username, email: this.state.email, password: this.state.password};
     API.registerUser(userObj).then((res)=>{
       console.log(res)
-      if (!res.data.errmsg) {
+      if (!res.data.errors && !res.data.error) {
         console.log('successful signup')
         // If user successfully added to database, redirect to login page
         // this.props.history.push("/");
@@ -43,7 +44,13 @@ class Register extends Component {
         })
       
       } else {
-        console.log('username already exists')
+        if (res.data.error) {
+          swal(res.data.error)
+          console.log(res.data.error)
+        } else {
+          swal(res.data.message)
+          console.log(res.data.message)
+        }
       }
     }).catch(error => {
       console.log('signup error: ')

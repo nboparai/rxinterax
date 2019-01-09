@@ -3,9 +3,9 @@ const usersController = require("../../controllers/usersController");
 const passport = require('../../passport')
 
 router
-  .route("/")
-  .post(usersController.findAll)
-  .post(usersController.register)
+  .route("/signup")
+  .post(usersController.register);
+
 
 router
   .route("/:id")
