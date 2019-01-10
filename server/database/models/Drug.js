@@ -13,7 +13,9 @@ const DrugSchema = new Schema({
  // `dosage` is of type String
   dosage: {type: String, required: false},
   //drug id from database
-  rxcui: {type: String, required: false}
+  rxcui: {type: String, required: false},
+  //store user id
+  userid: {type: String, required: true}
 
 });
 
