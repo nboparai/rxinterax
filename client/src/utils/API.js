@@ -32,6 +32,9 @@ export default {
       console.log(drugids)
       return axios.get(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${drugids.join('+')}`)
 
+   },
+   deleteMed: function(medData) {
+      return axios.delete(`/api/drugs/delete/${medData.medname}/${medData.userid}`);
    }
 };
 

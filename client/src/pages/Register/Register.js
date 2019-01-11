@@ -42,7 +42,7 @@ class Register extends Component {
         // If user successfully added to database, redirect to login page
         // this.props.history.push("/");
         this.setState({
-          redirectTo: "/console/:id"
+          redirectTo: "/"
         })
       
       } else {

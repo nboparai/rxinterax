@@ -8,5 +8,7 @@ router.route("/:id")
   .post(drugsController.create);
 router.route("/update/:id")
   .put(drugsController.update);
+router.route("/delete/:medname/:userid")
+  .delete(drugsController.delete);
 
 module.exports = router;
