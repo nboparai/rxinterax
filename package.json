@@ -33,6 +33,7 @@
     "has-flag": "^3.0.0",
     "if-env": "^1.0.4",
     "is-ci": "^2.0.0",
+    "load-json-file": "^5.1.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",

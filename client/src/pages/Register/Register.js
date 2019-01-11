@@ -82,7 +82,7 @@ class Register extends Component {
                   <h2 className="welcome-subtitle">A single account for your peace of mind.</h2>
 
                   <p className="welcome-subtext">Register for a free RxInterax account here and get access to the prescription interaction member portal.</p>
-                  <Button className="switch-btn" onClick={this.routeChange}>I already have an account</Button>
+                  <Button className="switch-btn" onClick={this.routeChange}>Account login</Button>
             
             </div>
           </article>

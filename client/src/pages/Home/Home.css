@@ -26,32 +26,36 @@ span.text-secondary {
 }
 
 
-.logo {
+.appLogo {
    width: 45px;
    position: relative;
    top: 3%;
    left: 6.5%;
-   z-index: 100;
 }
 
 .console-container {
    width: 100%;
 }
 
-/* ---- Med input form ---- */
-.meds-form-container {
-   padding: 5.5rem;
+.med-console-row {
+   display: inline-flex;
+   flex-direction: row-reverse;
+   padding: 0 5.5rem 1rem 5.5rem;
+   margin: 5rem 0 0 0;
 }
 
-@media (max-width: 600px) {
-   .meds-form-container {
-      padding: 4rem;
-   }
-   .form-control {
-      width: 180%;
-   }
-} 
+.right-half_med-input {
+   width: 40%;
+}
+.left-half_current-meds {
+   width: 60%;
+}
 
+
+/* ---- Med input form ---- */
+.meds-form-container {
+   padding-left: 2rem;
+}
 
 .meds-form-header {
    font-family: 'Open Sans', sans-serif;
@@ -59,14 +63,11 @@ span.text-secondary {
    margin-bottom: 2rem;
 }
 
-.form {
-   width: 50%;
-}
-
 .meds-submit-btn {
    background-color: #00a876;
-   border-color: #00a876;
-   color: black;
+   border-color: #00be85;
+   color: white;
+   cursor: pointer;
    font-weight: bold;
    text-transform: uppercase;
    line-height: normal;
@@ -78,7 +79,7 @@ span.text-secondary {
 
 /* ---- User medications ---- */
 .user-meds-container {
-   padding: 1rem 5.5rem;
+   padding-right: 1.5rem;
 }
 
 .list-group-item-heading,
@@ -99,13 +100,14 @@ span.text-secondary {
 
 .list-group-item-text {
    padding: 0 1.5rem 1.2rem;
-   font-size: 1.2rem;
+   font-size: 1rem;
 }
 
 .list-group-item {
    display: inline-flex;
    flex-wrap: wrap;
    padding: 1.2rem 1.5rem;
+   line-height: 2.2rem;
 }
 
 .list-group-item:last-child {
@@ -120,7 +122,7 @@ span.text-secondary {
    letter-spacing: 1px;
 }
 
-/* ---- Med interactions  */
+/* ---- Med interactions ---- */
 .interaction-container {
    padding: 2rem 5.5rem;
    padding-bottom: 8rem;
@@ -129,3 +131,55 @@ span.text-secondary {
 .interaction-container>.list-group-item-heading {
    padding-bottom: 1.4rem;
 }
+
+li.interaction-item {
+   padding: 1rem 0;
+}
+
+/* ---- Med delete button ---- */
+.delete-btn {
+   cursor: pointer;
+   color: orangered;
+}
+
+/* ---- Mobile response ---- */
+@media (max-width: 600px) {
+   .appLogo {
+      width: 40px;
+      margin-left: .5rem;
+      margin-top: -15px;
+   }
+   span.text-secondary {
+      padding-right: .8rem;
+      margin-top: -15px;
+      font-size: 1rem;
+   }
+   .med-console-row {
+      display: flex;
+      padding: 0 2rem;
+      margin-top: 3rem;
+   }
+   .right-half_med-input {
+      width: 100%;
+      margin-bottom: 2rem;
+   }
+   .left-half_current-meds {
+      width: 100%;
+   }
+   .meds-form-container,
+   .user-meds-container {
+      padding: 0;
+   }
+   .form-control {
+      font-size: .8rem;
+   }
+   .med-list-item {
+      padding-right: 2rem;
+   }
+   .interaction-container {
+      padding: 2rem 2rem 4rem 2rem;
+   }
+   .meds-submit-btn {
+      margin-top: 4px;
+   }
+} 
