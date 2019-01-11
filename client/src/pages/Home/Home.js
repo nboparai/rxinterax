@@ -2,11 +2,10 @@ import React, { Component } from "react"
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { Input, FormBtn } from "../../components/Form";
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button } from 'reactstrap';
+import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import logo from "../../assets/img/logo.png"
 import "./Home.css";
-import Navbar from "../../components/Navbar"
-import swal from "sweetalert2";
+import Navbar from "../../components/navbar"
 
 class Home extends Component {
   constructor() {
@@ -169,48 +168,55 @@ class Home extends Component {
 
           <img className="logo" alt="RxInterax" src={logo} />
 
-          <div className="meds-form-container">
-            <h2 className="meds-form-header">Enter your prescriptions</h2>
-            <form className="form">
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="medname"
-                placeholder="Name (required)"
-              />
+          <div className="row med-console-row">
+            <div className="right-half_med-input"> 
+                {/* Prescription input container */}
+                <div className="meds-form-container">
+                  <h2 className="meds-form-header">Enter your prescriptions</h2>
+                  <form className="form">
+                    <Input
+                      value={this.state.title}
+                      onChange={this.handleInputChange}
+                      name="medname"
+                      placeholder="Name (required)"
+                    />
 
-              <Input
-                value={this.state.dosage}
-                onChange={this.handleInputChange}
-                name="dosage"
-                placeholder="Dosage (optional)"
-              />
-              <FormBtn
-                className="meds-submit-btn"
-                disabled={!(this.state.medname)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Info
-            </FormBtn>
-            </form>
+                    <Input
+                      value={this.state.dosage}
+                      onChange={this.handleInputChange}
+                      name="dosage"
+                      placeholder="Dosage (optional)"
+                    />
+                    <FormBtn
+                      className="meds-submit-btn"
+                      disabled={!(this.state.medname)}
+                      onClick={this.handleFormSubmit}
+                    >
+                      Submit Info
+                    </FormBtn>
+                  </form>
+                </div>
+            </div>
+
+            <div className="left-half_current-meds"> 
+                {/* User medication container */}
+                <ListGroup className="user-meds-container">
+                  <ListGroupItemHeading>Current Medications</ListGroupItemHeading>
+                  <ListGroupItemText>
+                    Your current medications are listed below.
+                    Please update or delete medications to reflect your
+                    current routine.
+                </ListGroupItemText>
+                  {this.state.meds.length ? (
+                    <ListGroupItem>
+                      {this.state.meds.map(med => (
+                        <li className="med-list-item">{med} <span className="delete-btn" onClick={() => this.deleteMed(med, this.props.userid)}>✗</span> </li>
+                      ))}
+                    </ListGroupItem>
+                  ) : null}
+                </ListGroup>
+            </div>
           </div>
-
-          {/* User medication container */}
-          <ListGroup className="user-meds-container">
-            <ListGroupItemHeading>Current Medications</ListGroupItemHeading>
-            <ListGroupItemText>
-              Your current medications are listed below.
-              Please update or delete medications to reflect your
-              current routine.
-          </ListGroupItemText>
-            {this.state.meds.length ? (
-              <ListGroupItem>
-                {this.state.meds.map(med => (
-                  <li className="med-list-item">{med} <span className="delete-btn" onClick={() => this.deleteMed(med, this.props.userid)}>✗</span> </li>
-                ))}
-              </ListGroupItem>
-            ) : null}
-          </ListGroup>
 
           {/* User interaction container */}
           <ListGroup className="interaction-container">
@@ -223,7 +229,6 @@ class Home extends Component {
               </ListGroupItem>
             ) : null}
           </ListGroup>
-
         </section>
       )
     }

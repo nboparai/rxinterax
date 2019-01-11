@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 // import API from "./utils/API";
 import axios from "axios";
 
