@@ -166,7 +166,7 @@ class Home extends Component {
           <Navbar loggedIn={this.state.loggedIn} />
           {/* --------------------------------------------- */}
 
-          <img className="logo" alt="RxInterax" src={logo} />
+          <img className="appLogo" alt="RxInterax" src={logo} />
 
           <div className="row med-console-row">
             <div className="right-half_med-input"> 

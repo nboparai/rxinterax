@@ -26,12 +26,11 @@ span.text-secondary {
 }
 
 
-.logo {
+.appLogo {
    width: 45px;
    position: relative;
    top: 3%;
    left: 6.5%;
-   z-index: 100;
 }
 
 .console-container {
@@ -137,27 +136,29 @@ li.interaction-item {
    padding: 1rem 0;
 }
 
-/* ---- Med delete button  */
+/* ---- Med delete button ---- */
 .delete-btn {
    cursor: pointer;
    color: orangered;
 }
 
-/* ---- Mobile response */
+/* ---- Mobile response ---- */
 @media (max-width: 600px) {
-   .logo {
-      margin-left: 6px;
+   .appLogo {
+      width: 40px;
+      margin-left: .5rem;
+      margin-top: -15px;
    }
-
    span.text-secondary {
       padding-right: .8rem;
+      margin-top: -15px;
+      font-size: 1rem;
    }
    .med-console-row {
       display: flex;
       padding: 0 2rem;
       margin-top: 3rem;
    }
-
    .right-half_med-input {
       width: 100%;
       margin-bottom: 2rem;
@@ -165,17 +166,20 @@ li.interaction-item {
    .left-half_current-meds {
       width: 100%;
    }
-   
    .meds-form-container,
    .user-meds-container {
       padding: 0;
    }
-
+   .form-control {
+      font-size: .8rem;
+   }
    .med-list-item {
       padding-right: 2rem;
    }
-
    .interaction-container {
       padding: 2rem 2rem 4rem 2rem;
+   }
+   .meds-submit-btn {
+      margin-top: 4px;
    }
 } 

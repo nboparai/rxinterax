@@ -18,3 +18,14 @@
 .footer-link a {
    color: rgb(131, 131, 131);
 }
+
+
+@media (max-width: 600px) {
+   .footer {
+      padding-top: 1rem;
+
+   }
+   .footer-appName {
+      margin: 0 1.2rem;
+   }
+}
