@@ -12,10 +12,6 @@ section {
    color: #fff;
 }
 
-div {
-   height: 100%;
-}
-
 article {
    position: absolute;
    top: 47%;
@@ -37,7 +33,21 @@ article {
    left: 12%;
 }
 
+/* ---- Swal Modal ---- */
+.swal2-popup {
+   padding: 3rem;
+   width: 28em;
+}
+.swal2-header {
+   font-size: 0.95rem;
+}
+.swal2-popup .swal2-styled.swal2-confirm {
+   background-color: #00a876;
+   border-radius: 25px;
+}
+/* ---- Left & Right Split ---- */
 .left-half {
+   height: 100%;
    font-family: 'Open Sans', sans-serif;
    font-weight: lighter;   
    background-color: #151a22;
@@ -47,6 +57,7 @@ article {
 }
 
 .right-half {
+   height: 100%;
    font-family: 'Open Sans', sans-serif;
    font-weight: lighter;   
    background-color: #00a876;
@@ -132,6 +143,20 @@ article {
       position: relative;
       top: 5%;
       left: 9%;
+   }
+   .swal2-container {
+      padding: 30px;
+   }
+   .swal2-popup {
+      padding: 1.5rem;
+   }
+   .swal2-header {
+      font-size: 0.75rem;
+   }
+   .swal2-popup .swal2-styled.swal2-confirm{
+      padding: .4em 1.5em;
+      border-radius: 25px;
+      margin-top: 0;
    }
    article {
       padding: 1.2rem;

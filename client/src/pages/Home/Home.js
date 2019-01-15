@@ -163,7 +163,7 @@ class Home extends Component {
           {/* --------------------------------------------- */}
           {/* Implement Navbar for console styling purposes */}
           {/* --------------------------------------------- */}
-          <Navbar loggedIn={this.state.loggedIn} />
+          {/* <Navbar loggedIn={this.state.loggedIn} /> */}
           {/* --------------------------------------------- */}
 
           <img className="appLogo" alt="RxInterax" src={logo} />

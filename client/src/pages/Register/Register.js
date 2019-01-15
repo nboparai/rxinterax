@@ -3,8 +3,8 @@ import {withRouter, Redirect} from "react-router-dom";
 import API from "../../utils/API";
 import Footer from "../../components/Footer";
 import { Input, Button, Form, FormGroup } from "reactstrap";
-import swal from "sweetalert2";
-import logo from "../../assets/img/logo.png"
+import Swal from "sweetalert2";
+import logo from "../../assets/img/logo.png";
 
 
 class Register extends Component {
@@ -40,17 +40,16 @@ class Register extends Component {
       if (!res.data.errors && !res.data.error) {
         console.log('successful signup')
         // If user successfully added to database, redirect to login page
-        // this.props.history.push("/");
         this.setState({
           redirectTo: "/"
         })
       
       } else {
         if (res.data.error) {
-          swal(res.data.error)
+          Swal(res.data.error)
           console.log(res.data.error)
         } else {
-          swal(res.data.message)
+          Swal("User Validation Failed. \n All text fields required.")
           console.log(res.data.message)
         }
       }
