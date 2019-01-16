@@ -15,24 +15,30 @@ section {
 
 /* ---- Navbar ---- */
 #nav-container {
-   background-color: #151a22;   
+   background-color: #151a22;  
+   height: 120px;
 }
 
-span.text-secondary {
+ul {
+   list-style-type: none;
+}
+
+a.text-secondary {
    position: absolute;
-   top: 85%;
-   right: 5%;
+   text-align: center;
+   top: 20%;
+   right: 6%;
    font-size: 1.2rem;
 }
 
-
 .appLogo {
-   width: 45px;
-   position: relative;
-   top: 3%;
-   left: 6.5%;
+   width: 60px;
+   position: absolute;
+   top: 24%;
+   left: 7.1%;
 }
 
+/* ---- Content ---- */
 .console-container {
    width: 100%;
 }
@@ -41,16 +47,16 @@ span.text-secondary {
    display: inline-flex;
    flex-direction: row-reverse;
    padding: 0 5.5rem 1rem 5.5rem;
-   margin: 5rem 0 0 0;
+   margin: 3.5rem 0 0 0;
 }
 
 .right-half_med-input {
    width: 40%;
 }
+
 .left-half_current-meds {
    width: 60%;
 }
-
 
 /* ---- Med input form ---- */
 .meds-form-container {
@@ -125,7 +131,7 @@ span.text-secondary {
 /* ---- Med interactions ---- */
 .interaction-container {
    padding: 2rem 5.5rem;
-   padding-bottom: 8rem;
+   padding-bottom: 5rem;
 }
 
 .interaction-container>.list-group-item-heading {
@@ -146,19 +152,21 @@ li.interaction-item {
 @media (max-width: 600px) {
    .appLogo {
       width: 40px;
-      margin-left: .5rem;
-      margin-top: -15px;
+      margin-left: -2px;
+
+   }
+   a.text-secondary {
+      border: none;
+      padding-right: 8px;
    }
    span.text-secondary {
-      padding-right: .8rem;
-      margin-top: -15px;
-      font-size: 1rem;
+      font-size: 1.1rem;
    }
    .med-console-row {
       display: flex;
-      padding: 0 2rem;
-      margin-top: 3rem;
-   }
+      padding: 0 1.7rem;
+      margin-top: 0rem;
+   } 
    .right-half_med-input {
       width: 100%;
       margin-bottom: 2rem;
@@ -177,7 +185,7 @@ li.interaction-item {
       padding-right: 2rem;
    }
    .interaction-container {
-      padding: 2rem 2rem 4rem 2rem;
+      padding: 2rem 2rem 3rem 2rem;
    }
    .meds-submit-btn {
       margin-top: 4px;
