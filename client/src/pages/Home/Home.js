@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { Input, FormBtn } from "../../components/Form";
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
-import logo from "../../assets/img/logo.png"
+// import logo from "../../assets/img/logo.png"
 import "./Home.css";
 import Navbar from "../../components/navbar"
 
@@ -26,17 +26,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // --------------------------------------------
-    // COMMENT BACK IN AFTER STYLING FINISHED ON CONSOLE
-    // --------------------------------------------
-
-    // if(!this.props.loggedin) {
-    //   this.routeChange();
-    // }
-    // else 
-    // --------------------------------------------
-
-    if (this.props.userid.length) {
+    if(!this.props.loggedin) {
+      this.routeChange();
+    }
+    else if (this.props.userid.length) {
       this.loadMeds(this.props.userid);
     }
   }
@@ -67,12 +60,9 @@ class Home extends Component {
         }
         this.setState({
           drugIDs: idArray,
-          // --------------------------------------------- 
-          // ---------- Styling purposes ~ remove when done ----------
-          // loggedIn: true
-          // --------------------------------------------- 
+          loggedIn: true
         });
-        // had to move up here because for some reason this.state.drugids only returned most recent value
+        // Alex ~ had to move up here because for some reason this.state.drugids only returned most recent value
         this.drugInteractionSearch(idArray);
       })
       .catch(err => console.log(err));
@@ -92,12 +82,12 @@ class Home extends Component {
         medname: this.state.medname,
         dosage: this.state.dosage,
         userid: this.props.userid
-      }, this.props.userid) //need to pass userId - done Alex 1/9/16
+      }, this.props.userid) // Need to pass userId - done Alex 1/9/16
 
         .then(res => {
           // Sets the database _id for the med just submitted
           this.setState({ submitMedId: res.data._id });
-          //Initiates API for finding the rxcui for the submitted medname
+          // Initiates API for finding the rxcui for the submitted medname
           this.drugIDSearch(this.state.medname)
         })
         .catch(err => console.log(err));
@@ -110,10 +100,10 @@ class Home extends Component {
     })
       .then(res => {
         this.setState({ submitMedId: "" });
-        // had to move the search below up into the loadmeds method 
+        // Had to move the search below up into the loadmeds method 
         // this.drugInteractionSearch(this.state.rxcui);
 
-        //reloads the med list
+        // Reloads the med list
         this.loadMeds(this.props.userid)
       })
   }
@@ -121,7 +111,7 @@ class Home extends Component {
   drugIDSearch = (drugs) => {
     API.drugIDSearch(drugs)
       .then(res => {
-        //stores rxcui in state and clears medname as we no longer need it
+        // Stores rxcui in state and clears medname as we no longer need it
         this.setState({ rxcui: res.data.approximateGroup.candidate[0].rxcui, medname: "" });
         this.updateDrugdb(this.state.submitMedId, this.state.rxcui)
       })
@@ -160,13 +150,8 @@ class Home extends Component {
     } else {
       return (
         <section className="console-container">
-          {/* --------------------------------------------- */}
-          {/* Implement Navbar for console styling purposes */}
-          {/* --------------------------------------------- */}
-          {/* <Navbar loggedIn={this.state.loggedIn} /> */}
-          {/* --------------------------------------------- */}
 
-          <img className="appLogo" alt="RxInterax" src={logo} />
+          {/* <img className="appLogo" alt="RxInterax" src={logo} /> */}
 
           <div className="row med-console-row">
             <div className="right-half_med-input"> 
@@ -180,7 +165,6 @@ class Home extends Component {
                       name="medname"
                       placeholder="Name (required)"
                     />
-
                     <Input
                       value={this.state.dosage}
                       onChange={this.handleInputChange}

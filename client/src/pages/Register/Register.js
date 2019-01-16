@@ -110,7 +110,7 @@ class Register extends Component {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="Your email"
+                    placeholder="Email"
                     value={this.state.email}
                     onChange={this.handleChange}
                   />

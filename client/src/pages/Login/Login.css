@@ -28,9 +28,8 @@ article {
 
 .logo {
    width: 60px;
-   position: relative;
-   top: 5%;
-   left: 12%;
+   position: static;
+   margin: 1.8rem 0 0 5.4rem;
 }
 
 /* ---- Swal Modal ---- */
@@ -140,9 +139,8 @@ article {
 @media (max-width: 600px) {
    .logo {
       width: 40px;
-      position: relative;
-      top: 5%;
-      left: 9%;
+      margin: 1.8rem 0 0 1.6rem;
+
    }
    .swal2-container {
       padding: 30px;
@@ -159,7 +157,7 @@ article {
       margin-top: 0;
    }
    article {
-      padding: 1.2rem;
+      padding: 1.7rem;
    }
    .welcome-header {
       font-size: 1.8rem;

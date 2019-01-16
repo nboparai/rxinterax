@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import logo from "../assets/img/logo.png";
 import "../App.css";
 
 class Navbar extends Component {
@@ -36,11 +36,16 @@ class Navbar extends Component {
         return (
             <div>
                 <header className="navbar App-header" id="nav-container">
-                    <section className="navbar-section">
-                        <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                            <span className="text-secondary">logout</span>
-                        </Link>
-                    </section>
+                    <ul className="navbar-container"> 
+                        <li className="nav-logo">
+                            <img className="appLogo" alt="RxInterax" src={logo} />
+                        </li>
+                        <li className="nav-logout">
+                            <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
+                                <span className="text-secondary">logout</span>
+                            </Link>
+                        </li>
+                    </ul>
                 </header>
             </div>
         )
