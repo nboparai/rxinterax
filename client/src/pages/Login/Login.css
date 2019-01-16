@@ -29,7 +29,7 @@ article {
 .logo {
    width: 60px;
    position: static;
-   margin: 1.8rem 0 0 5.4rem;
+   margin: 1.8rem 0 0 5.3rem;
 }
 
 /* ---- Swal Modal ---- */
@@ -135,12 +135,11 @@ article {
    border-radius: 25px;
 }
 
-/* ---- Mobile response ---- */
-@media (max-width: 600px) {
+/* ---- Smartphones (portrait & landscape) ---- */
+@media (min-width: 320px) and (max-width: 414px) {
    .logo {
       width: 40px;
-      margin: 1.8rem 0 0 1.6rem;
-
+      margin: 1.5rem 0 0 1.6rem;
    }
    .swal2-container {
       padding: 30px;
@@ -188,5 +187,16 @@ article {
       padding: 0.375rem 1rem;
       font-size: 0.7rem;
       margin-bottom: 0;
+   }
+}
+
+/* ---- iPads (portrait & lanscape) ---- */
+@media (min-width : 768px) and (max-width : 1024px) { 
+   .logo {
+      width: 60px;
+      margin: 2.7rem 0 0 4rem;
+   }
+   article {
+      padding: 4rem;
    }
 }

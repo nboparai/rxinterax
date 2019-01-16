@@ -150,9 +150,6 @@ class Home extends Component {
     } else {
       return (
         <section className="console-container">
-
-          {/* <img className="appLogo" alt="RxInterax" src={logo} /> */}
-
           <div className="row med-console-row">
             <div className="right-half_med-input"> 
                 {/* Prescription input container */}
@@ -185,12 +182,12 @@ class Home extends Component {
             <div className="left-half_current-meds"> 
                 {/* User medication container */}
                 <ListGroup className="user-meds-container">
-                  <ListGroupItemHeading>Current Medications</ListGroupItemHeading>
-                  <ListGroupItemText>
-                    Your current medications are listed below.
-                    Please update or delete medications to reflect your
-                    current routine.
-                </ListGroupItemText>
+                  <ListGroupItemHeading>
+                    Current Medications
+                      <p className="list-group-item-text">Your current medications are listed below.
+                      Please update or delete medications to reflect your
+                      current routine.</p>
+                  </ListGroupItemHeading>
                   {this.state.meds.length ? (
                     <ListGroupItem>
                       {this.state.meds.map(med => (
