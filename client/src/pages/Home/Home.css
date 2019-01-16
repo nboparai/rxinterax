@@ -31,6 +31,7 @@ ul {
 }
 
 a.text-secondary {
+   font-family: 'Open Sans', sans-serif;
    position: absolute;
    text-align: center;
    top: 20%;
@@ -60,7 +61,7 @@ a.text-secondary {
 
 /* ---- Med input form ---- */
 .meds-form-container {
-   padding-left: 2rem;
+   padding-left: 1.5rem;
 }
 
 .meds-form-header {
@@ -98,6 +99,7 @@ a.text-secondary {
 }
 
 .list-group-item-heading {
+   font-family: 'Open Sans', sans-serif;
    padding: 1.5rem 2rem .5rem 1.5rem;
    font-size: 1.7rem;
    border-top-left-radius: 7px;
@@ -105,7 +107,8 @@ a.text-secondary {
 }
 
 .list-group-item-text {
-   font-size: 1.2rem;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 1.15rem;
    font-weight: normal;
    padding: .5rem 0;
    line-height: 1.6rem;
@@ -195,7 +198,30 @@ li.interaction-item {
    }
 } 
 
-/* iPads (portrait & lanscape) */
+@media (min-width : 415px) and (max-width : 640px) { 
+   .med-console-row {
+      display: flex;
+   } 
+   .right-half_med-input {
+      width: 100%;
+      margin-bottom: 2rem;
+   }
+   .left-half_current-meds {
+      width: 100%;
+   }
+   .meds-form-container,
+   .user-meds-container {
+      padding: 0;
+   }
+}
+
+@media (min-width : 641px) and (max-width : 767px) { 
+   .meds-form-container {
+      padding-left: .8rem;
+   }
+}
+
+/* ---- iPads (portrait & lanscape) ---- */
 @media (min-width : 768px) and (max-width : 1024px) { 
    #nav-container {
       height: 150px;
@@ -204,16 +230,44 @@ li.interaction-item {
       margin-left: .5rem;
    }
    span.text-secondary {
-      font-size: 1.55rem;
+      font-size: 1.25rem;
    }
    .med-console-row {
       padding: 0 4rem;
       margin-top: 2rem;
    } 
+   .meds-form-container {
+      padding-left: 1rem;
+   }
    input.form-control {
       margin-bottom: 20px;
    }
    .interaction-container {
       padding: 2.5rem 4rem;
+   }
+}
+
+@media (min-width : 1025px) and (max-width : 1223px) { 
+   a.text-secondary {
+      padding-right: 1.7rem;
+   }
+   span.text-secondary {
+      font-size: 1.25rem;
+   }
+   .meds-form-container {
+      padding-left: 1.3rem;
+   }
+}
+
+/* ---- Desktops and laptops ---- */
+@media (min-width : 1224px) { 
+   a.text-secondary {
+      padding-right: .8rem;
+   }
+   span.text-secondary {
+      font-size: 1.3rem;
+   }
+   .list-group-item-text {
+      font-size: 1.35rem;
    }
 }

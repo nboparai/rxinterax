@@ -19,13 +19,36 @@
    color: rgb(131, 131, 131);
 }
 
-
-@media (max-width: 600px) {
+/* ---- Smartphones (portrait & landscape) ---- */
+@media (min-width: 320px) and (max-width: 414px) {
    .footer {
       padding-top: 1rem;
 
    }
    .footer-appName {
-      margin: 0 1.2rem;
+      margin: 0 1.6rem;
+   }
+}
+
+/* ---- iPads (portrait & lanscape) ---- */
+@media (min-width : 768px) and (max-width : 1024px) { 
+   .footer {
+      font-size: .75rem;
+   }
+   .footer-appName {
+      margin-left: 4rem;
+   }
+}
+
+@media (min-width : 1025px) and (max-width : 1223px) { 
+   .footer {
+      font-size: .75rem;
+   }
+}
+
+/* ---- Desktops and laptops ---- */
+@media (min-width : 1224px) { 
+   .footer {
+      font-size: .8rem;
    }
 }
