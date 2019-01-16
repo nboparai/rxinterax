@@ -36,7 +36,6 @@ app.use(routes);
 // Local database url ~ 27017 is the default mongoDB port
 const uri = 'mongodb://localhost:27017/rxinterax'
 // Connect to Mongo database
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax", { useNewUrlParser: true });
 mongoose.connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true });
 
 // Start API server
