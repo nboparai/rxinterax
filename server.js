@@ -37,7 +37,7 @@ app.use(routes);
 const uri = 'mongodb://localhost:27017/rxinterax'
 // Connect to Mongo database
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/rxinterax", { useNewUrlParser: true });
-mongoose.connect(uri, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true });
 
 // Start API server
 app.listen(PORT, () => {
