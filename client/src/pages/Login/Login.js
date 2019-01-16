@@ -71,7 +71,9 @@ class Login extends Component {
     return (
       <section className="container">
         <div className="left-half"> 
+        
           <img className="logo" alt="RxInterax" src={logo} />
+          
           <article>
             <div className="welcome-section">
                 <h1 className="welcome-header">Welcome</h1>

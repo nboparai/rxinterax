@@ -19,6 +19,13 @@ section {
    height: 120px;
 }
 
+.appLogo {
+   width: 60px;
+   position: static;
+   margin: .8rem 0 0 1.8rem;
+
+}
+
 ul {
    list-style-type: none;
 }
@@ -29,13 +36,6 @@ a.text-secondary {
    top: 20%;
    right: 6%;
    font-size: 1.2rem;
-}
-
-.appLogo {
-   width: 60px;
-   position: absolute;
-   top: 24%;
-   left: 7.1%;
 }
 
 /* ---- Content ---- */
@@ -105,8 +105,10 @@ a.text-secondary {
 }
 
 .list-group-item-text {
-   padding: 0 1.5rem 1.2rem;
-   font-size: 1rem;
+   font-size: 1.2rem;
+   font-weight: normal;
+   padding: .5rem 0;
+   line-height: 1.6rem;
 }
 
 .list-group-item {
@@ -114,6 +116,7 @@ a.text-secondary {
    flex-wrap: wrap;
    padding: 1.2rem 1.5rem;
    line-height: 2.2rem;
+   border-top: 1px solid darkgrey;
 }
 
 .list-group-item:last-child {
@@ -148,12 +151,12 @@ li.interaction-item {
    color: orangered;
 }
 
-/* ---- Mobile response ---- */
-@media (max-width: 600px) {
+/* ---- Smartphones (portrait & landscape) ---- */
+@media (min-width: 320px) and (max-width: 414px) {
    .appLogo {
       width: 40px;
-      margin-left: -2px;
-
+      margin-left: -1.9rem;
+      margin-top: -1.4rem;
    }
    a.text-secondary {
       border: none;
@@ -185,9 +188,32 @@ li.interaction-item {
       padding-right: 2rem;
    }
    .interaction-container {
-      padding: 2rem 2rem 3rem 2rem;
+      padding: 2rem 1.7rem 3rem;
    }
    .meds-submit-btn {
       margin-top: 4px;
    }
 } 
+
+/* iPads (portrait & lanscape) */
+@media (min-width : 768px) and (max-width : 1024px) { 
+   #nav-container {
+      height: 150px;
+   }
+   .appLogo {
+      margin-left: .5rem;
+   }
+   span.text-secondary {
+      font-size: 1.55rem;
+   }
+   .med-console-row {
+      padding: 0 4rem;
+      margin-top: 2rem;
+   } 
+   input.form-control {
+      margin-bottom: 20px;
+   }
+   .interaction-container {
+      padding: 2.5rem 4rem;
+   }
+}
