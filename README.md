@@ -1,13 +1,18 @@
 <h1 align="center">
-    <img src="client/public/favicon.ico" alt="RxInterax">
+    <img src="client/public/favicon.ico" width="200" alt="RxInterax">
+    <br>
+    RxInterax
+    <br>
 </h1>
+
+<h4 align="center">
+    <strong>Take your health into your own hands.</strong>
+</h4>
 
 
 ## Overview
 
 RxInterax is a full-stack, fully mobile responsive application that provides fast and accurate clinical prescription and OTC drug interactions to determine which drug combinations a user should be aware of or avoid. The app allows users to check new or potential medications against their saved current medications to find and identify potentially harmful and unsafe combinations. 
-
-<p align="center"><strong>Take your health into your own hands. </strong></p>
 
 
 ## Demo the App
