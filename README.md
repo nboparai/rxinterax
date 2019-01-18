@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="client/src/assets/img/logo.png" width="200" alt="RxInterax">
+    <img src="client/src/assets/img/logo.png" width="150" alt="RxInterax">
     <br>
     RxInterax
     <br>
