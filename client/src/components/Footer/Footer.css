@@ -1,10 +1,19 @@
+/*  
+COLORS
+#D8DBE2
+#A9BCD0
+#58A4B0
+#373F51
+#1B1B1E
+*/
+
 .footer {
    height: 70px;
    position: fixed;
    bottom: 0;
    left: 0;
    width: 100%;
-   color: rgb(131, 131, 131);
+   color: #D8DBE2;
    display: inline-flex;
    font-size: .65rem;
    letter-spacing: 1.7px;
@@ -16,7 +25,7 @@
 }
 
 .footer-link a {
-   color: rgb(131, 131, 131);
+   color: #D8DBE2;
 }
 
 /* ---- Smartphones (portrait & landscape) ---- */
