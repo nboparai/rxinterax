@@ -149,7 +149,7 @@ article {
    line-height: initial;
    background-color: #1B1B1E;
    border: 2px solid #1B1B1E;
-   color: #58A4B0;
+   color: rgb(171, 213, 219);
    padding: 11px 32px;
    margin-top: 5px;
    border-radius: 25px;
@@ -168,7 +168,7 @@ article {
    letter-spacing: 2.5px;
    font-size: .8rem;
    line-height: initial;
-   color: #1B1B1E;
+   color: rgb(12, 12, 14);
    background-color: #58A4B0;
    border: 2px solid #58A4B0;
    padding: 11px 30px;
