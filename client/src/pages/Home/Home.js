@@ -157,7 +157,7 @@ class Home extends Component {
                   <h2 className="meds-form-header">Enter your prescriptions</h2>
                   <form className="form">
                     <Input
-                      value={this.state.title}
+                      value={this.state.medname}
                       onChange={this.handleInputChange}
                       name="medname"
                       placeholder="Name (required)"
