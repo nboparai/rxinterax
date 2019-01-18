@@ -41,8 +41,8 @@ class Navbar extends Component {
                             <img className="appLogo" alt="RxInterax" src={logo} />
                         </li>
                         <li className="nav-logout">
-                            <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span>
+                            <Link to="/" className="btn btn-link text-dark" onClick={this.logout}>
+                                <span className="text-dark"><i class="fas fa-sign-out-alt"></i></span>
                             </Link>
                         </li>
                     </ul>

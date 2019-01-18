@@ -1,3 +1,12 @@
+/*  
+COLORS
+#D8DBE2
+#A9BCD0
+#58A4B0
+#373F51
+#1B1B1E
+*/
+
 * {
    box-sizing: border-box;
 }
@@ -5,11 +14,10 @@
 body {
    font-size: 1.25rem;
    line-height: 150%;
-   /* text-shadow: 0 2px 2px #b6701e; */
 }
 
 section {
-   color: #fff;
+   color: #D8DBE2;
 }
 
 article {
@@ -41,7 +49,7 @@ article {
    font-size: 0.95rem;
 }
 .swal2-popup .swal2-styled.swal2-confirm {
-   background-color: #00a876;
+   background-color: #58A4B0;
    border-radius: 25px;
 }
 /* ---- Left & Right Split ---- */
@@ -49,7 +57,7 @@ article {
    height: 100%;
    font-family: 'Open Sans', sans-serif;
    font-weight: lighter;   
-   background-color: #151a22;
+   background-color: #1B1B1E;
    position: absolute;
    left: 0px;
    width: 55%;
@@ -59,7 +67,10 @@ article {
    height: 100%;
    font-family: 'Open Sans', sans-serif;
    font-weight: lighter;   
-   background-color: #00a876;
+   background-image: linear-gradient(120deg, #A9BCD0 20%, #58A4B0 80%);
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+    background-size: cover;
    position: absolute;
    right: 0px;
    width: 45%;
@@ -81,14 +92,14 @@ article {
 }
 
 .welcome-subtitle {
-   color: rgb(141, 140, 140);
+   color: #D8DBE2;
    margin-top: 10px;
    font-size: 1.5rem;
    line-height: 1.8rem;
 }
 
 .welcome-subtext {
-   color: rgb(141, 140, 140);
+   color: #D8DBE2;
    margin: 2rem 0 2rem 0;
    font-size: 1rem;
    line-height: 1.7rem;
@@ -98,13 +109,35 @@ article {
    font-family: 'Open Sans', sans-serif;
    font-weight: lighter;  
    font-size: 1.5rem;
-   color: rgba(255, 255, 255, 0.897);
+   color: #D8DBE2;
    margin-bottom: 2rem;
    padding-top: 4rem;
 }
 
 .form-control {
+   background-color: #58A4B0;
+   border: none;
+   border-bottom: 2px solid #1B1B1E;
+   border-radius: 0px;
    margin-bottom: 10px;
+}
+
+.form-control[type=text], .form-control[type=password], .form-control[type=email] {
+   background: transparent;
+   color: #D8DBE2;
+   font-weight: bold;
+}
+
+.form-control::placeholder {
+   color: #1B1B1E;
+   font-weight: bold;
+}
+
+.form-control:focus {
+   background: transparent;
+   border: none;
+   border-bottom: 2px solid #1B1B1E;
+   box-shadow: none;
 }
 
 .login-signup-btn {
@@ -114,12 +147,18 @@ article {
    letter-spacing: 2.5px;
    font-size: .8rem;
    line-height: initial;
-   background-color: #fff;
-   color: #00a876;
-   border-color: #00976a;
+   background-color: #1B1B1E;
+   border: 2px solid #1B1B1E;
+   color: #58A4B0;
    padding: 11px 32px;
    margin-top: 5px;
    border-radius: 25px;
+}
+
+.login-signup-btn:hover {
+   background: transparent;
+   border: 2px solid #1B1B1E;
+   color: #1B1B1E;
 }
 
 .switch-btn {
@@ -129,10 +168,17 @@ article {
    letter-spacing: 2.5px;
    font-size: .8rem;
    line-height: initial;
-   background-color: #00a876;
-   border-color: #00a876;
+   color: #1B1B1E;
+   background-color: #58A4B0;
+   border: 2px solid #58A4B0;
    padding: 11px 30px;
    border-radius: 25px;
+}
+
+.switch-btn:hover {
+   background: transparent;
+   border: 2px solid #58A4B0;
+   color: #58A4B0;
 }
 
 /* ---- Smartphones (portrait & landscape) ---- */
