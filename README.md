@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="client/public/favicon.ico" width="200" alt="RxInterax">
+    <img src="client/src/assets/img/logo.png" width="200" alt="RxInterax">
     <br>
     RxInterax
     <br>
@@ -22,10 +22,10 @@ RxInterax is a full-stack, fully mobile responsive application that provides fas
 
 ### Application Video Demo
 
-![Login Page](readmeImgs/login.png)
+![Login Page](client/src/assets/readme/login.png)
 
 
-![Main Console](readmeImgs/console.png)
+![Main Console](client/src/assets/readme/console.png)
 
 
 ## Installation
