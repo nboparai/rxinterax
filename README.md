@@ -1,44 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"><strong>RxInterax</strong></h1>
 
-## Available Scripts
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+RxInterax is a full-stack, fully mobile responsive application that provides fast and accurate clinical prescription and OTC drug interactions to determine which drug combinations a user should be aware of or avoid. The app allows users to check new or potential medications against their saved current medications to find and identify potentially harmful and unsafe combinations. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h1 align="center"><strong>Take your health into your own hands. </strong></h1>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## Demo the App
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*RxInterax* is deployed on Heroku. Demo the application [here](https://mysterious-fjord-70592.herokuapp.com/).
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Application Video Demo
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+![Login Page](readmeImgs/login.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+![Main Console](readmeImgs/console.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To install the application locally, run the following in your terminal/bash:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* git clone https://github.com/savannahcarr/rxinterax.git
+* cd rxinterax
+* npm install
+* npm run start
 
-## Learn More
+Finally, open the local application on port 3000 at the following URL:  `localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies Implemented:
+
+- Axios ~  https://www.npmjs.com/package/axios
+- Bcrypt.js ~  https://www.npmjs.com/package/bcryptjs
+- Body-parser ~  https://www.npmjs.com/package/body-parser
+- Express ~  https://www.npmjs.com/package/express
+- Express-session ~  https://www.npmjs.com/package/express-session
+- MongoDB ~  https://www.npmjs.com/package/mongodb
+- Mongoose ~  https://www.npmjs.com/package/mongoose
+- Morgan ~  https://www.npmjs.com/package/morgan
+- Node.js ~  https://www.npmjs.com/package/node
+- Passport ~  https://www.npmjs.com/package/passport
+- Passport-local ~  https://www.npmjs.com/package/passport-local
+- React-router-dom ~  https://www.npmjs.com/package/react-router-dom
+- Reactstrap ~  https://www.npmjs.com/package/reactstrap
+- SweetAlert2 ~  https://www.npmjs.com/package/sweetalert2
+
+
+## Built With
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+- Visual Studio Code ~ code editor
+- Bootstrap ~ framework
+- CSS ~ custom stylesheet
+
+
+## Authors
+- Alex Ichikawa [alex-ichikawa](https://github.com/alex-ichikawa)
+- Savannah Carr [savannahcarr](https://github.com/savannahcarr)
+- Charlene Rigby [CharleneRigby](https://github.com/CharleneRigby)
+- Navreet Boparai [nboparai](https://github.com/nboparai)
+
+
+## Credits
+
+Full-Stack Flex Coding Bootcamp @ UCLA Extension
