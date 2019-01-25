@@ -231,6 +231,7 @@ ul {
 
 li.interaction-item {
    padding: 1rem 0;
+   white-space: pre-line;
 }
 
 /* ---- Med delete button ---- */
