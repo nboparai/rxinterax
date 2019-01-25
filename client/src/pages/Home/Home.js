@@ -122,7 +122,10 @@ class Home extends Component {
 
           let interactionArray = [];
           for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
-            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[0].name} (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[0].minConceptItem.name})
+            ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[1].name} (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[1].minConceptItem.name}):
+            ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+
 
             interactionArray = [...interactionArray, x];
           }
