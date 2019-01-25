@@ -126,12 +126,17 @@ class Home extends Component {
             ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[1].name} (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[1].minConceptItem.name}):
             ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
 
+
             interactionArray = [...interactionArray, x];
           }
           this.setState({ interactions: interactionArray });
         }
       })
   }
+  // Sav 01/20 ~ trimmed interaction 'comment' rendered to screen to simplify results
+  // let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
+  //           ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
+
 
   deleteMed = (med, userid) => {
     API.deleteMed({
