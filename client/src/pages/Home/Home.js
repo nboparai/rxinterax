@@ -122,8 +122,7 @@ class Home extends Component {
 
           let interactionArray = [];
           for (let i = 0; i < res.data.fullInteractionTypeGroup[0].fullInteractionType.length; i++) {
-            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[0].name} (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[0].minConceptItem.name})
-            ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[1].name} (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[1].minConceptItem.name}):
+            let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[0].name} & ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].minConcept[1].name} || (${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[0].minConceptItem.name} & ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].interactionConcept[1].minConceptItem.name})
             ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
 
 
@@ -133,10 +132,6 @@ class Home extends Component {
         }
       })
   }
-  // Sav 01/20 ~ trimmed interaction 'comment' rendered to screen to simplify results
-  // let x = `${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].comment}
-  //           ${res.data.fullInteractionTypeGroup[0].fullInteractionType[i].interactionPair[0].description}`
-
 
   deleteMed = (med, userid) => {
     API.deleteMed({
