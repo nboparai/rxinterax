@@ -17,7 +17,7 @@ RxInterax is a full-stack, fully mobile responsive application that provides fas
 
 ## Demo the App
 
-*RxInterax* is deployed on Heroku. Demo the application [here](https://mysterious-fjord-70592.herokuapp.com/).
+*RxInterax* is deployed on Heroku. Demo the application [here](https://rxinterax.herokuapp.com/).
 
 
 ### Application Video Demo
